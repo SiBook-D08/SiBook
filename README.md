@@ -1,6 +1,6 @@
 # SiBook 📚📗
 ## Deskripsi Singkat
-Sebuah platform yang dirancang dengan tujuan untuk meningkatkan tingkat literasi di Indonesia. Situs web ini memungkinkan pengguna untuk mencari buku yang mereka inginkan dan meminjam buku secara online. Selain itu, situs ini memberikan kemudahan dalam melacak riwayat peminjaman dan pengembalian buku, serta memberikan pengguna kesempatan untuk memberikan ulasan saat mengembalikan buku. Fitur tambahan yang tersedia adalah kemampuan untuk mendaftarkan buku yang ingin disumbangkan.
+Sebuah platform yang dirancang dengan tujuan untuk meningkatkan tingkat literasi di Indonesia. Situs web ini memungkinkan pengguna untuk mencari buku yang mereka inginkan dan meminjam buku secara online. Selain itu, situs ini memberikan kemudahan dalam melacak riwayat peminjaman dan pengembalian buku, serta memberikan pengguna kesempatan untuk memberikan ulasan saat mengembalikan buku. Fitur tambahan yang tersedia adalah kemampuan untuk memfavoritkan buku dari daftar buku yang ada.
 
 ## Latar Belakang 
 Platform ini muncul sebagai solusi terhadap tantangan yang dihadapi dalam upaya meningkatkan literasi di Indonesia. Di tengah kendala akses terbatas ke perpustakaan fisik, keterbatasan waktu, dan kesulitan mencari buku yang diinginkan, platform ini hadir untuk memberikan akses yang lebih mudah dan praktis sehingga pengguna hanya perlu datang untuk mengambil buku yang sudah direservasi sebelumnya.
@@ -15,18 +15,18 @@ Berikut merupakan daftar modul yang akan diimplementasikan beserta pengembang da
 - Autentikasi User dan Katalog Buku - [Adrian Aryaputra Hamzah](https://github.com/mnqrt)
 - Peminjaman Buku - [Gabriella Naomi Hutagalung](https://github.com/gnh374) 
 - Pengembalian Buku - [Muhammad Hilmy Abdul Aziz](https://github.com/Hilmy224)
-- Penyumbangan Buku - [Reza Apriono](https://github.com/rzapriono)
+- Favoritkan Buku - [Reza Apriono](https://github.com/rzapriono)
 - About Us - [Fernanda Nadhiftya Putra](https://github.com/adipppp)
 
 ##  Otorisasi 
 ### Pengguna yang belum login dapat:
 - Melihat katalog buku yang ada
-- Mengakses laman `about us `
+- Mengakses laman `about us`
 
 ### Pengguna yang sudah login dapat:
 - Mengakses seluruh fitur dari user yang tidak login
 - Melakukan peminjaman buku sekaligus melihat kumpulan buku yang telah dipinjam
-- Melakukan penyumbangan buku sekaligus melihat kumpulan buku yang telah disumbang
+- Memfavoritkan buku sekaligus melihat kumpulan buku yang telah difavoritkan
 
 ## Anggota Kelompok
 Berikut merupakan anggota kelompok beserta pengembang proyek SiBook
