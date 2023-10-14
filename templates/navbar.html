@@ -21,14 +21,24 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/">Home</a>
                 </li>
+
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link" href="/login">Login</a>
+                    <a class="nav-link" href="/catalogue">Katalog</a>
                 </li>
             </ul>
-        </div> <!-- end of navbar-collapse -->
-    </div> <!-- end of container -->
-</nav> <!-- end of navbar -->
-<!-- end of navigation -->
+        </div> 
+    </div> 
+</nav>
+
 
 
 <style>
