@@ -5,4 +5,3 @@ from django.contrib.auth.models import User
 class Loan(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
-    masuk_cart=models.BooleanField(default=False)

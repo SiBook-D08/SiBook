@@ -23,7 +23,7 @@
         <input type="text" id="searchInput" placeholder="Search...">
         <label class="text-search"><input type="checkbox" id="searchTitle" > Title</label>
         <label class="text-search"><input type="checkbox" id="searchAuthor" > Author</label>
-        <label class="text-search"><input type="checkbox" id="searchNumPages" > Number of Pages</label>
+        <label class="text-search"><input type="checkbox" id="searchNumPages" >Max Pages</label>
         <button class="button-search" type="submit">Search</button>
     </form>
 </div>
@@ -233,7 +233,7 @@ async function searchProducts(event) {
             case 'author':
                 return product.fields.author.includes(searchInput);
             case 'numPages':
-                return product.fields.num_pages.toString().includes(searchInput);
+                return product.fields.num_pages <= (+searchInput);
             case 'title':
                 return product.fields.title.includes(searchInput);
         }

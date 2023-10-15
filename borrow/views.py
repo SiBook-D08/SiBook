@@ -13,7 +13,6 @@ def show_main(request):
         'name': request.user.username,
         'books': books,
         'user' : request.user,
-       
     }
     
     return render(request, "borrow.html", context)
@@ -26,7 +25,7 @@ def add_to_cart(request, book_id):
     book.avaliable = False
     book.save()
     print(len(Loan.objects.all()))
-    return HttpResponse('borrow.html', status=202)
+    return redirect('borrow:show_main')
     
     
 
