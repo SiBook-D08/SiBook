@@ -2,57 +2,54 @@
 {% load static %}
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg fixed-top navbar-dark">
-    <div class="container">
-        
-        <!-- Image Logo -->
-        <!-- <a class="navbar-brand logo-image" href=""><img src="" alt="alternative"></a> --> 
-
-        <!-- Text Logo - Use this if you don't have a graphic logo -->
-        <a class="navbar-brand logo-text page-scroll" href="">SiBook
-        </a>
-
-        <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Home</a>
-                </li>
-
-                {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">Logout</a>
-                    </li>
-                {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
-                    </li>
-                {% endif %}
-                <li class="nav-item">
-                    <a class="nav-link" href="/catalogue">Katalog</a>
-                </li>
-            </ul>
-        </div> 
-    </div> 
-</nav>
-
+<div class="navbar">
+    <div class="navbar-brand">
+        <a href="/" class="navbar-item">SiBook</a>
+    </div>
+    <div class="navbar-menu">
+        <div class="navbar-end">
+            <a href="/catalogue/" class="navbar-item">Katalog</a>
+            {% if user.is_authenticated %}
+                <a href="/logout/" class="navbar-item">Logout</a>
+            {% else %}
+                <a href="/login/" class="navbar-item">Login</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
 
 
 <style>
+/* Customize the navbar styling */
 .navbar {
-  background-color: #24262a;
-  font-weight: 600;
-  font-size: 0.875rem;
-  line-height: 0.875rem;
-  box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.025);
+    background-color: #7D9D9C; /* Green background color */
+    color: #E4DCCF; /* White text color */
+    padding: 0; /* Remove padding */
+    height: 5.5vh; /* Set the height to 10% of the viewport height */
+    width: 100vw;
+    display: flex;
+    align-items: center; /* Center items vertically */
+    position: fixed;
+    z-index: 1;
 }
 
-.navbar .social-icons {
-    margin-left: 0.5rem;
-  }
+.navbar-brand {
+    margin-right: 2em; /* Adjust the margin for brand */
+}
+
+.navbar-item {
+    color: #E4DCCF; /* White text color for navbar items */
+    padding: 0.5em 1em; /* Add some padding to the items */
+    margin: 0 0.5em; /* Add some margin between items */
+    text-decoration: none; /* Remove default text decoration */
+    font-size: 1.2em; /* Adjust font size */
+}
+
+.navbar-item:hover {
+    background-color: #576F72; /* Darker green color on hover */
+}
+
+
 
 
 </style>

@@ -4,7 +4,7 @@ from django.utils import timezone
 
 class Book(models.Model):
     title = models.TextField()
-    publisher = models.TextField()
+    author = models.TextField()
     description = models.TextField()
     num_pages = models.IntegerField()
     avaliable = models.BooleanField(default=True)

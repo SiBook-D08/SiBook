@@ -24,12 +24,12 @@ def show_catalogue(request):
 def add_new_data(request):
     data = json.loads(request.body.decode('utf-8'))
     title = data.get('title', '')
-    publisher = data.get('publisher', '')
+    author = data.get('author', '')
     description = data.get('description', '')
     num_pages = data.get('num_pages', '') or 1
     avaliable = data.get('avaliable', '')
     
-    new_book = Book(title=title, publisher=publisher, description=description, num_pages=num_pages, avaliable=avaliable)
+    new_book = Book(title=title, author=author, description=description, num_pages=num_pages, avaliable=avaliable)
 
     if len(Book.objects.filter(title=title)) == 0:
         new_book.save()
