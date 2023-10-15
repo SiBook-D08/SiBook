@@ -21,10 +21,10 @@
 <div class="search-container">
     <form id="searchForm" onsubmit="searchProducts(event)">
         <input type="text" id="searchInput" placeholder="Search...">
-        <label><input type="checkbox" id="searchTitle"> Title</label>
-        <label><input type="checkbox" id="searchAuthor"> Author</label>
-        <label><input type="checkbox" id="searchNumPages"> Number of Pages</label>
-        <button type="submit">Search</button>
+        <label class="text-search"><input type="checkbox" id="searchTitle" > Title</label>
+        <label class="text-search"><input type="checkbox" id="searchAuthor" > Author</label>
+        <label class="text-search"><input type="checkbox" id="searchNumPages" > Number of Pages</label>
+        <button class="button-search" type="submit">Search</button>
     </form>
 </div>
 </br>
@@ -37,25 +37,45 @@
     display: flex;
     justify-content: center;
 }
-
+.text-search{
+    background-color:#F0EBE3 ;
+    padding: 5px;
+    border-radius: 5px;
+    
+}
+.button-search{
+    background-color:#003300 ;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    
+}
 .pembatas{
     margin: 3vh 0.3vw 0 0.3vw;
 }
 
-body{
-    background-color: #E4DCCF;
-}
-
-.card-body{
-    background-color: #69d4d0cc;
-}
+    body{
+        background-color:#62847a;
+    }
+    
+    .card-body{
+        background-color: #F0EBE3;
+    }
+    
+    .card-footer{
+        background-color: #003300;
+    }
+    .card-footer-borrowed{
+        background-color: #e6e6e6;
+    }
 
 .text-muted{
     color: rgba(0, 0, 0, .5);
 }
 
 .card-header{
-    background-color: #c0e2e1;
+    background-color: #003300;
+    color: white;
 }
 
 .header {

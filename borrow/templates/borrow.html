@@ -1,0 +1,286 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Header -->
+<header id="header" class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="text-container">
+                    <h1 class="h1-large">Ini Pinjam</h1>
+                    {% if user.is_authenticated %} <h1 class="h1-large">Halo {{ name }}</h1> {% endif %}
+                    <a class="btn-solid-lg page-scroll" href="#about">Discover</a>
+                </div> 
+            </div> 
+        </div> 
+    </div> 
+</header> 
+
+</br>
+
+<div class="search-container">
+    <form id="searchForm" onsubmit="searchProducts(event)">
+        <input type="text" id="searchInput" placeholder="Search...">
+        <label class="text-search"><input type="checkbox" id="searchTitle" > Title</label>
+        <label class="text-search"><input type="checkbox" id="searchAuthor" > Author</label>
+        <label class="text-search"><input type="checkbox" id="searchNumPages" > Number of Pages</label>
+        <button class="button-search" type="submit">Search</button>
+    </form>
+</div>
+</br>
+<div class="row pembatas" id="product_cards"></div>
+
+<style>
+
+    .search-container{
+        display: flex;
+        justify-content: center;
+    }
+    
+    .pembatas{
+        margin: 3vh 0.3vw 0 0.3vw;
+    }
+    .text-search{
+    background-color:#F0EBE3 ;
+    padding: 5px;
+    border-radius: 5px;
+    
+}
+    .button-search{
+        background-color:#003300 ;
+        padding: 5px;
+        border-radius: 5px;
+        color: white;
+        
+    }
+    body{
+        background-color:#62847a;
+    }
+    
+    .card-body{
+        background-color: #F0EBE3;
+    }
+    .card-body-borrowed {
+        padding: 10px;
+        background-color: #e6e6e6;
+        display: flex;
+        flex-direction: column;
+        
+    }
+    .card-header-borrowed{
+        background-color: #a6a6a6;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+    .card-footer{
+        background-color: #003300;
+    }
+    .card-footer-borrowed{
+        background-color: #e6e6e6;
+    }
+    .text-muted{
+        color: rgba(0, 0, 0, .5);
+    }
+    
+    .card-header{
+        background-color: #003300;
+        color: white;
+    }
+    
+    .header {
+        background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+                    url("/static/images/home-bg.jpeg") center center no-repeat;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        text-align: center;
+        height: 100vh;
+        position: relative; /* Set position to relative for absolute positioning */
+    
+    }
+    
+    .header .text-container {
+        position: absolute;
+        top: 50%; /* Position the container 50% from the top */
+        left: 50%; /* Position the container 50% from the left */
+        transform: translate(-50%, -50%); /* Center the container */
+    }
+    
+    .header .h1-large {
+        margin-bottom: 1.75rem;
+        color: #ffffff;
+    }
+    
+    
+    .header .h1-large {
+        margin-bottom: 1.75rem;
+        color: #ffffff;
+    }
+    
+    .header .btn-solid-lg:hover {
+        border: 1px solid #ffffff;
+        color: #ffffff;
+    }
+    
+    .header .btn-outline-lg {
+        padding: 1.625rem 1.625rem 1.625rem 1.625rem;
+        border: none;
+        color: #ffffff;
+    }
+    
+    .header .btn-outline-lg:hover {
+        background: transparent;
+        color: #9c9ead;
+        text-decoration: none;
+    }
+    
+    .header .btn-outline-lg .fas {
+        margin-right: 0.375rem;
+    }
+    
+    .btn-solid-lg {
+        display: inline-block;
+        padding: 1.625rem 2.625rem 1.625rem 2.625rem;
+        border: 1px solid #0b36a8;
+        background-color: #0b36a8;
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 0.875rem;
+        line-height: 0;
+        text-decoration: none;
+        transition: all 0.2s;
+    }
+    
+    .btn-solid-lg:hover {
+        background-color: transparent;
+        color: #0b36a8; /* needs to stay here because of the color property of a tag */
+        text-decoration: none;
+    }
+    
+    </style>
+    
+    
+
+<script>
+    
+async function displayProductsBorrowed(products){
+    let htmlString = ""
+    products.forEach((product, index) =>{
+        htmlString += `\n<div class="col-lg-4 col-md-6 mb-4">
+            <div id="${product.pk}" class="card h-100 ${index === products.length - 1 ? `last-product` : ``}">
+                <div class="card-header-borrowed d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">${product.fields.title}</h5>
+                </div>
+                <div class="card-body-borrowed rounded-lg">
+					<p class="text-muted small">Id: ${product.pk}</p>
+                    <p class="text-muted small">Penulis: ${product.fields.author}</p>
+                    <p class="text-muted small">Banyak Halaman: ${product.fields.num_pages}</p>
+                    <p class="card-text">${product.fields.description}</p>
+                </div>
+                <div class = card-footer-borrowed > </div>
+            </div>
+        </div>`
+    })
+    document.getElementById("product_cards").innerHTML += htmlString
+}
+async function displayProducts(products){
+    let htmlString = ""
+    products.forEach((product, index) =>{
+        htmlString += `\n<div class="col-lg-4 col-md-6 mb-4">
+            <div id="${product.pk}" class="card h-100">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">${product.fields.title}</h5>
+                </div>
+                <div class="card-body rounded-lg">
+					<p class="text-muted small">Id: ${product.pk}</p>
+                    <p class="text-muted small">Penulis: ${product.fields.author}</p>
+                    <p class="text-muted small">Banyak Halaman: ${product.fields.num_pages}</p>
+                    <p class="card-text">${product.fields.description}</p>
+                </div>
+                <div class="card-footer d-flex justify-content-between align-items-center ">
+                    <button onclick=addToCart(${product.pk})> Pinjam </button>
+                </div>
+            </div>
+        </div>`
+    })
+    document.getElementById("product_cards").innerHTML = htmlString
+}
+async function getProducts() {
+    return fetch("get-books/").then((res) => res.json())
+}
+async function getProductsBorrowed() {
+    return fetch("get-books-borrowed/").then((res) => res.json())
+}
+
+async function refreshProducts(){
+    const products = await getProducts()
+    displayProducts(products)
+}
+
+async function refreshEveryProduct(){
+    refreshProducts()
+    refreshProductsBorrowed()
+}
+async function refreshProductsBorrowed(){
+    const products = await getProductsBorrowed()
+    displayProductsBorrowed(products)
+}
+
+function addToCart(bookId) {
+    fetch(`add-to-cart/${bookId}/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json', // Sesuaikan dengan jenis konten yang Anda kirimkan
+            // Jika diperlukan, tambahkan header otorisasi di sini
+        }
+    })
+    
+}
+async function searchProducts(event) {
+    event.preventDefault();
+    const searchInput = document.getElementById('searchInput').value;
+
+    //jika tidak ada yang dicheck, maka searchCategory = 'title'
+    let                                                         searchCategory = 'title';
+    if (document.getElementById('searchAuthor').checked)        searchCategory = 'author';
+    else if (document.getElementById('searchNumPages').checked) searchCategory = 'numPages';
+    
+    const products = await getProducts();
+    let filteredProducts = products.filter(product => {
+        switch (searchCategory) {
+            case 'author':
+                return product.fields.author.includes(searchInput);
+            case 'numPages':
+                return product.fields.num_pages.toString().includes(searchInput);
+            case 'title':
+                return product.fields.title.includes(searchInput);
+        }
+    });
+    displayProducts(filteredProducts);
+}
+
+const checkBoxes = ['searchTitle', 'searchAuthor', 'searchNumPages']
+function handleCheckboxChange(checkboxId){//supaya pada setiap waktu, maks 1 checkbox yang nyala
+    for(const checkbox of checkBoxes){
+        if(checkbox !== checkboxId){
+            document.getElementById(checkbox).checked = false
+        }
+    }
+}
+
+function settingUp(){
+    document.getElementById('searchTitle').addEventListener('change', () => handleCheckboxChange('searchTitle'));
+    document.getElementById('searchAuthor').addEventListener('change', () => handleCheckboxChange('searchAuthor'));
+    document.getElementById('searchNumPages').addEventListener('change', () => handleCheckboxChange('searchNumPages'));
+    
+    document.getElementById('searchForm').addEventListener('submit', (event) => {
+        event.preventDefault();  // Prevent default form submission behavior
+        searchProducts(event);
+    });
+}
+settingUp()
+refreshEveryProduct()
+</script>
+
+{% endblock content %}

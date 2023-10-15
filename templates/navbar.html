@@ -9,11 +9,14 @@
     <div class="navbar-menu">
         <div class="navbar-end">
             <a href="/catalogue/" class="navbar-item">Katalog</a>
+            <a href="/borrow/" class="navbar-item">Pinjam</a>
             {% if user.is_authenticated %}
                 <a href="/logout/" class="navbar-item">Logout</a>
             {% else %}
                 <a href="/login/" class="navbar-item">Login</a>
             {% endif %}
+
+           
         </div>
     </div>
 </div>
