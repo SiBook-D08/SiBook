@@ -231,11 +231,11 @@ async function searchProducts(event) {
     let filteredProducts = products.filter(product => {
         switch (searchCategory) {
             case 'author':
-                return product.fields.author.includes(searchInput);
+                return product.fields.author.toLowerCase().includes(searchInput.toLowerCase());
             case 'numPages':
                 return product.fields.num_pages <= (+searchInput);
             case 'title':
-                return product.fields.title.includes(searchInput);
+                return product.fields.title.toLowerCase().includes(searchInput.toLowerCase());
         }
     });
     displayProducts(filteredProducts);

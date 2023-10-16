@@ -40,16 +40,13 @@ def get_books(request):
     return HttpResponse(serializers.serialize('json', product_item))
 
 def get_books_borrowed(request):
-    product_item = Book.objects.filter(avaliable=False)
+    product_item = Loan.objects.all()
     return HttpResponse(serializers.serialize('json', product_item))
 
 def get_book_data(request, id):
-    try:
-        book = Book.objects.get(pk=id)
-        data = {
-            'book' : book,
+    book = Book.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize('json', book))
 
-        }
-        return JsonResponse(data)
-    except Book.DoesNotExist:
-        return JsonResponse({'error': 'Buku tidak ditemukan'}, status=404)
+def get_user_data(request, id):
+    user = User.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize('json', user))
