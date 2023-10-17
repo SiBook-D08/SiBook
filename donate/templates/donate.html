@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="/donate/" method="post" id="donate-form">
+    {% csrf_token %}
+    <h1 class="donate-h1">Donate A Book</h1>
+    <div class="field-grid">
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" />
+        <label for="author">Author:</label>
+        <input type="text" id="author" name="author" />
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea>
+        <label for="num-pages">Page Count:</label>
+        <input type="number" id="num-pages" name="num_pages" />
+    </div>
+    <div class="button-wrapper">
+        <button type="submit">Donate Book</button>
+    </div>
+    {% if success %}
+    <p class="success-message">Form submitted!</p>
+    {% endif %}
+    {% if error %}
+    <h1 class="error-message">ATTN: Invalid input!</h1>
+    {% endif %}
+</form>
+
+<style>
+    #donate-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .donate-h1 {
+        text-align: center;
+    }
+
+    .field-grid {
+        flex: 1;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 20vw;
+    }
+    
+    .button-wrapper {
+        align-self: center;
+    }
+
+    .success-message {
+        color: green;
+        text-align: center;
+    }
+
+    .error-message {
+        color: #ff0000;
+        text-align: center;
+    }
+</style>
+{% endblock content %}
