@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'main',
     'catalogue',
     'about_us',
-    'donate'
+    'donate',
     'borrow',
 ]
 
