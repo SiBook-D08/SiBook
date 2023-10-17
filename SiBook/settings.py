@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'catalogue',
     'about_us',
     'donate'
+    'borrow',
 ]
 
 MIDDLEWARE = [

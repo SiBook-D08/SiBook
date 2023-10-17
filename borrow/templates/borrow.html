@@ -7,8 +7,8 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="text-container">
-                    <h1 class="h1-large">Ini Katalog</h1>
-                    {% if user.is_authenticated %} <h1 class="h1-large">Halo {{ username }}</h1> {% endif %}
+                    <h1 class="h1-large">Ini Pinjam</h1>
+                    {% if user.is_authenticated %} <h1 class="h1-large">Halo {{ name }}</h1> {% endif %}
                     <a class="btn-solid-lg page-scroll" href="#about">Discover</a>
                 </div> 
             </div> 
@@ -23,16 +23,20 @@
         <input type="text" id="searchInput" placeholder="Search...">
         <label class="text-search"><input type="checkbox" id="searchTitle" > Title</label>
         <label class="text-search"><input type="checkbox" id="searchAuthor" > Author</label>
-        <label class="text-search"><input type="checkbox" id="searchNumPages" >Max Pages</label>
+        <label class="text-search"><input type="checkbox" id="searchNumPages" > Max Pages</label>
         <button class="button-search" type="submit">Search</button>
     </form>
 </div>
 </br>
 <div class="row pembatas" id="product_cards"></div>
+</br>
+<h1 style="text-align: center; color: rgb(223, 211, 211)">Buku ini telah dipinjam</h1>
+<div class="row pembatas" id="product_cards_borrowed"></div>
 
-<link rel="stylesheet" href="{% static 'css/catalogue.css' %}" />
-<script src="{% static 'js/fetchBook.js' %}"></script>
-<script src="{% static 'js/renderBook.js' %}"></script>
+
+
+<link rel="stylesheet" href="{% static 'css/borrow.css' %}" />
+<script src="{% static 'js/renderBookBorrowSection.js' %}"></script>
 <script src="{% static 'js/searchBar.js' %}"></script>
-{% endblock content %}
 
+{% endblock content %}

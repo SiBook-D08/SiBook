@@ -1,0 +1,116 @@
+
+
+.search-container{
+    display: flex;
+    justify-content: center;
+}
+.text-search{
+    background-color:#F0EBE3 ;
+    padding: 5px;
+    border-radius: 5px;
+    
+}
+.button-search{
+    background-color:#003300 ;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    
+}
+.pembatas{
+    margin: 3vh 0.3vw 0 0.3vw;
+}
+
+    body{
+        background-color:#62847a;
+    }
+    
+    .card-body{
+        background-color: #F0EBE3;
+    }
+    
+    .card-footer{
+        background-color: #003300;
+    }
+    .card-footer-borrowed{
+        background-color: #e6e6e6;
+    }
+
+.text-muted{
+    color: rgba(0, 0, 0, .5);
+}
+
+.card-header{
+    background-color: #003300;
+    color: white;
+}
+
+.header {
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+                url("/static/images/home-bg.jpeg") center center no-repeat;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    text-align: center;
+    height: 100vh;
+    position: relative; /* Set position to relative for absolute positioning */
+
+}
+
+.header .text-container {
+    position: absolute;
+    top: 50%; /* Position the container 50% from the top */
+    left: 50%; /* Position the container 50% from the left */
+    transform: translate(-50%, -50%); /* Center the container */
+}
+
+.header .h1-large {
+    margin-bottom: 1.75rem;
+    color: #ffffff;
+}
+
+
+.header .h1-large {
+    margin-bottom: 1.75rem;
+    color: #ffffff;
+}
+
+.header .btn-solid-lg:hover {
+    border: 1px solid #ffffff;
+    color: #ffffff;
+}
+
+.header .btn-outline-lg {
+    padding: 1.625rem 1.625rem 1.625rem 1.625rem;
+    border: none;
+    color: #ffffff;
+}
+
+.header .btn-outline-lg:hover {
+    background: transparent;
+    color: #9c9ead;
+    text-decoration: none;
+}
+
+.header .btn-outline-lg .fas {
+    margin-right: 0.375rem;
+}
+
+.btn-solid-lg {
+    display: inline-block;
+    padding: 1.625rem 2.625rem 1.625rem 2.625rem;
+    border: 1px solid #0b36a8;
+    background-color: #0b36a8;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 0;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.btn-solid-lg:hover {
+    background-color: transparent;
+    color: #0b36a8; /* needs to stay here because of the color property of a tag */
+    text-decoration: none;
+}
