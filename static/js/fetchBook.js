@@ -29,9 +29,10 @@ async function fetchByLink(linkAPI, authorName){
 }
 
 async function fetchAllBook() {
-    const listAuthor = ['keyes', 'rowling', 'raditya', 'najwa', 'tere', 'andrea', 'king', 'crichton', 'riordan', 'jason', 'siahaan', 'adam', 'jhon', 'budi', 'asep', 'adrian']
+    const listAuthor = ['christopher', 'naomi', 'keyes', 'rowling', 'raditya', 'najwa', 'tere', 'andrea', 'king', 'crichton', 'riordan', 'jason', 'siahaan', 'adam', 'jhon', 'budi', 'asep', 'adrian']
     for(const nama of listAuthor){
         fetchByLink(`https://www.googleapis.com/books/v1/volumes?q=inauthor:${nama}&`, nama)
+		console.log(nama)
     }
 }
 
