@@ -50,7 +50,6 @@ async function displayProducts(products){
     document.getElementById("product_cards").innerHTML = htmlString
 }
 async function displayCart(products){
-    console.log(products);
     let htmlString=""
     if (products==null){
         htmlString=`masih kosong`
@@ -65,7 +64,7 @@ async function displayCart(products){
         const userData = (await userResponse.json())[0];
         
         htmlString += `
-        <div style="text-align: center;">
+        <div style="text-align: center; border: 1px solid black">
         <br>
         <tr> <td> ${bookData.fields.title} </td>
         <td> <a href="" style="color: black; text-decoration: none;"> <button onclick=RemoveFromCart(${product.pk})>Keluarkan</button> </td>
@@ -74,7 +73,6 @@ async function displayCart(products){
     }
     htmlString+=`</div>`
     htmlString+=`<a href="" style="color: black; text-decoration: none;"> <button onclick=addToList()>Pinjam</button>`
-   
     }
     
     document.getElementById("cart").innerHTML = htmlString
@@ -108,7 +106,6 @@ async function refreshProductsBorrowed(){
 }
 
 function addToCart(id) {
- 
     fetch(`add-to-cart/${id}/`, {
         method: 'POST',
         headers: {

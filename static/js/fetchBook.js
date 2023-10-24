@@ -10,7 +10,6 @@ async function fetchByLink(linkAPI, authorName){
 
     for (const item of data.items) {
 		const bookInfo = item.volumeInfo;
-        console.log(authorName+" "+bookInfo)
 		const postData = {
 			title: bookInfo.title,
 			author: authorName,

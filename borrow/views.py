@@ -21,29 +21,30 @@ def show_main(request):
 
 @csrf_exempt
 def add_to_cart(request, book_id):
-    book = Book.objects.get(pk=book_id)
-    if not (Cart.objects.filter(user=request.user, book=book).exists()):
-        loan = Cart(user=request.user, book=book)
-        loan.save()
+    if request.method == "POST" :
+        book = Book.objects.get(pk=book_id)
+        if not (Cart.objects.filter(user=request.user, book=book).exists()):
+            loan = Cart(user=request.user, book=book)
+            loan.save()
 
     return redirect('borrow:show_main')
     
 @csrf_exempt
 def add_to_list(request):
-    cart = Cart.objects.filter(user = request.user, book__avaliable= True)
-    for item in cart:
-        loan = Loan(user=request.user, book=item.book)
-        item.book.avaliable= False
-        item.book.save()
-        loan.save()
-    Cart.objects.filter(user = request.user).delete()
+    if request.method == "POST" :
+        cart = Cart.objects.filter(user = request.user, book__avaliable= True)
+        for item in cart:
+            loan = Loan(user=request.user, book=item.book)
+            item.book.avaliable= False
+            item.book.save()
+            loan.save()
+        Cart.objects.filter(user = request.user).delete()
     return redirect('borrow:show_main')    
 
 def batal_pinjem(request, id):
     print(Loan.objects.all())
     book = Book.objects.get(pk=id)
     print(request.user)
-    # Loan.objects.filter(user=request.user, book=book).delete()
     return redirect('borrow:show_main')
 
 def get_books(request):
@@ -71,7 +72,8 @@ def get_cart(request):
     
 @csrf_exempt    
 def remove_from_cart (request, id):
-    Cart.objects.filter(pk = id).delete()
+    if request.method == "POST" :
+        Cart.objects.filter(pk = id).delete()
     return redirect('borrow:show_main') 
 
 
