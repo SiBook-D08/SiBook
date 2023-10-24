@@ -22,7 +22,7 @@ def show_catalogue(request):
 
 @csrf_exempt
 def add_new_data(request):
-    if len(Book.objects.all()) == 100:
+    if len(Book.objects.all()) >=100:
         return HttpResponse("Book slot is full", status=202)
 
     data = json.loads(request.body.decode('utf-8'))
