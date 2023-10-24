@@ -17,7 +17,12 @@
 </header> 
 
 </br>
+<div class="container">
+    <h1 style="text-align: center;"> Ini isi Keranjang Kamu</h1>
+    <table id ="cart">
 
+    </table>
+</div>
 <div class="search-container">
     <form id="searchForm" onsubmit="searchProducts(event)">
         <input type="text" id="searchInput" placeholder="Search...">
@@ -36,7 +41,7 @@
 
 
 <link rel="stylesheet" href="{% static 'css/borrow.css' %}" />
-<script src="{% static 'js/renderBookBorrowSection.js' %}"></script>
+<script cache="reload" rel="preload" src="{% static 'js/renderBookBorrowSection.js' %}"></script>
 <script src="{% static 'js/searchBar.js' %}"></script>
 
 {% endblock content %}
