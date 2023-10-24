@@ -65,12 +65,14 @@ async function displayCart(products){
         const userData = (await userResponse.json())[0];
         
         htmlString += `
+        <div style="text-align: center;">
         <br>
-        <tr  > <td> ${bookData.fields.title} </td>
+        <tr> <td> ${bookData.fields.title} </td>
         <td> <a href="" style="color: black; text-decoration: none;"> <button onclick=RemoveFromCart(${product.pk})>Keluarkan</button> </td>
         </tr>
         `
     }
+    htmlString+=`</div>`
     htmlString+=`<a href="" style="color: black; text-decoration: none;"> <button onclick=addToList()>Pinjam</button>`
    
     }
