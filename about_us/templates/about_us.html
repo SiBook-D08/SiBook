@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/about_us.css' %}" />
+
+<div class="devs">
+    <h2>The Developers</h2>
+    <div class="dev-details">
+        <div class="img-container">
+            <img src="{% static 'images/github_avatars/mnqrt.png' %}" />
+        </div>
+        <div>
+            <h3>Adrian Aryaputra Hamzah</h3>
+            <a href="https://github.com/mnqrt">mnqrt</a>
+        </div>
+    </div>
+    <div class="dev-details">
+        <div class="img-container">
+            <img src="{% static 'images/github_avatars/adipppp.png' %}" />
+        </div>
+        <div>
+            <h3>Fernanda Nadhiftya Putra</h3>
+            <a href="https://github.com/adipppp">adipppp</a>
+        </div>
+    </div>
+    <div class="dev-details">
+        <div class="img-container">
+            <img src="{% static 'images/github_avatars/gnh374.png' %}" />
+        </div>
+        <div>
+            <h3>Gabriella Naomi Hutagalung</h3>
+            <a href="https://github.com/gnh374">gnh374</a>
+        </div>
+    </div>
+    <div class="dev-details">
+        <div class="img-container">
+            <img src="{% static 'images/github_avatars/Hilmy224.png' %}" />
+        </div>
+        <div>
+            <h3>Muhammad Hilmy Abdul Aziz</h3>
+            <a href="https://github.com/Hilmy224">Hilmy224</a>
+        </div>
+    </div>
+    <div class="dev-details">
+        <div class="img-container">
+            <img src="{% static 'images/github_avatars/rzapriono.png' %}" />
+        </div>
+        <div>
+            <h3>Reza Apriono</h3>
+            <a href="https://github.com/rzapriono">rzapriono</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}
