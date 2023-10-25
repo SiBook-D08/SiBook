@@ -34,10 +34,11 @@
         
     }
     .card-header-borrowed{
-        background-color: #a6a6a6;
+        background-color: #2c2b2b;
         display: flex;
         flex-direction: column;
         padding: 10px;
+        color: white;
     }
     .card-footer{
         background-color: #003300;
@@ -130,6 +131,16 @@
         padding-bottom: 5px;
 }
 
+    .register{
+        width: 50%;
+        border-radius: 5px;
+        justify-content: center;
+        margin-top: 10px;
+        text-align: left;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
     
     
 

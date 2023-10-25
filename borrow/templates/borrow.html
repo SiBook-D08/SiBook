@@ -18,11 +18,14 @@
 <!-- background-color: #003300;
 background-color: #F0EBE3 -->
 </br>
-<div class="container" style="border: 1px solid black; background-color: #F0EBE3; padding-bottom: 0.5%;">
-    <h1 style="text-align: center; color: #003300;"> Ini isi Keranjang Kamu</h1>
+<div class="container" style="border: 1px solid black; background-color: #F0EBE3; padding-bottom: 0.5%; max-width: 60%;border-radius: 10px; padding-top: 10px;">
+    <div style="padding-left: 10%; padding-right: 10%; padding-top: 5px;">
+        <h1 style="text-align: center; background-color: #003300; padding-top: 10%; padding: 5px; color: white; border-radius: 10px;"> Ini isi Keranjang Kamu</h1>
+    </div>
+    
     <table id ="cart" style="margin: auto; width: 50%;"></table>
 </div>
-
+<br>
 <div class="search-container">
     <form id="searchForm" onsubmit="searchProducts(event)">
         <input type="text" id="searchInput" placeholder="Search...">
@@ -35,9 +38,31 @@ background-color: #F0EBE3 -->
 </br>
 <div class="row pembatas" id="product_cards"></div>
 </br>
-<h1 style="text-align: center; color: rgb(223, 211, 211)">Buku ini telah dipinjam</h1>
 <div class="row pembatas" id="product_cards_borrowed"></div>
-
+<div class="container" style="border: 1px solid black; background-color: #F0EBE3; padding-bottom: 0.5%; max-width: 60%;border-radius: 10px; padding-top: 10px;">
+    <div class="d-flex justify-content-center align-items-center">
+        <h3  style="text-align: center; background-color: #003300; padding-top: 10%; padding: 5px; color: white; border-radius: 10px;">Buku yang kamu cari ga ada?</h3> 
+    </div>
+    <div class="d-flex justify-content-center align-items-center">
+        <h3  style="text-align: center; background-color: #003300; padding-top: 10%; padding: 5px; color: white; border-radius: 10px;"> Request di sini</h3>
+    </div>
+    
+    <div class="d-flex justify-content-center align-items-center">
+        <form class="register" method="POST">
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Request"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<br>
 
 
 <link rel="stylesheet" href="{% static 'css/borrow.css' %}" />

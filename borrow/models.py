@@ -9,3 +9,9 @@ class Loan(models.Model):
 class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
+
+class Request(models.Model):
+    title = models.CharField(max_length=250)
+    author = models.CharField(max_length=250)
+
+    

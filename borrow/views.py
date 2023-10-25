@@ -1,5 +1,7 @@
 import json
 from django.shortcuts import redirect, render
+from django.urls import reverse
+from borrow.forms import ProductForm
 from borrow.models import *
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from django.core import serializers
@@ -9,12 +11,12 @@ from django.views.decorators.csrf import csrf_exempt
 def show_main(request):
     books = Book.objects.all()
     user = request.user
-    Cart
-    
+    form = ProductForm(request.POST or None)
     context = {
         'name': request.user.username,
         'books': books,
         'user' : request.user,
+        'form': form,
     }
     
     return render(request, "borrow.html", context)
@@ -64,7 +66,7 @@ def get_user_data(request, id):
     return HttpResponse(serializers.serialize('json', user))
 
 def get_cart(request):
-    cart = Cart.objects.filter(user = request.user, book__avaliable= True)
+    cart = Cart.objects.filter(user = request.user.id, book__avaliable= True)
     if len(cart)>0:
         return HttpResponse(serializers.serialize('json', cart), content_type="application/json")
     else:
@@ -76,6 +78,11 @@ def remove_from_cart (request, id):
         Cart.objects.filter(pk = id).delete()
     return redirect('borrow:show_main') 
 
+def create_product(request):
+    form = ProductForm(request.POST or None)
+    if form.is_valid() and request.method == "POST":
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
 
 
 
