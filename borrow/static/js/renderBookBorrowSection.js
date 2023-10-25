@@ -11,7 +11,7 @@ async function displayProductsBorrowed(products){
         htmlString += `\n<div class="col-lg-4 col-md-6 mb-4">
             <div id="${bookData.pk}" class="card h-100">
                 <div class="card-header-borrowed d-flex justify-content-between align-items-center">
-                    <h5 class="card-title mb-0" style="background-color:red; border-radius: 5px;"> NOT AVAILABLE</h5>
+                    <h5 class="card-title mb-0" style="background-color:red; border-radius: 5px;"> UNAVAILABLE</h5>
                 </div>
                 <div class="card-body-borrowed rounded-lg" style="text-align:center;">	
                     <strong> <p class="card-text">Peminjam: ${userData.fields.username}</p> </strong>
