@@ -11,11 +11,11 @@ function donateAjaxPost(e) {
             return;
         }
         const obj = await res.json();
-        if (obj.status === "invalid") {
+        if (obj.status === "valid") {
             document.getElementById("full-message").classList.add("hidden");
             document.getElementById("error-message").classList.add("hidden");
             document.getElementById("success-message").classList.remove("hidden");
-        } else if (obj.status === "valid") {
+        } else if (obj.status === "invalid") {
             document.getElementById("full-message").classList.add("hidden");
             document.getElementById("success-message").classList.add("hidden");
             document.getElementById("error-message").classList.remove("hidden");
