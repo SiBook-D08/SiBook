@@ -7,7 +7,9 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from django.core import serializers
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-# Create your views here.
+from django.contrib.auth.decorators import login_required
+
+@login_required(login_url='/login')
 def show_main(request):
     books = Book.objects.all()
     user = request.user
