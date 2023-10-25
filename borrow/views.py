@@ -66,7 +66,7 @@ def get_user_data(request, id):
     return HttpResponse(serializers.serialize('json', user))
 
 def get_cart(request):
-    cart = Cart.objects.filter(user = request.user, book__avaliable= True)
+    cart = Cart.objects.filter(user = request.user.id, book__avaliable= True)
     if len(cart)>0:
         return HttpResponse(serializers.serialize('json', cart), content_type="application/json")
     else:

@@ -33,8 +33,8 @@ async function displayProducts(products){
                     <h5 class="card-title mb-0" style="color: white; background-color: rgb(8, 169, 8); border-radius: 5px;">AVAILABLE</h5>
                 </div>
                 <div class="card-body rounded-lg" style="text-align:center">
-                   <strong> <p class="card-text">${product.fields.title}</p> </strong>
-                   <strong> <p class="card-text">by: ${product.fields.author}</p> </strong>
+                    <strong> <p class="card-text">${product.fields.title}</p> </strong>
+                    <strong> <p class="card-text">by: ${product.fields.author}</p> </strong>
                 </div>
                 <div class="card-footer d-flex justify-content-between align-items-center ">
                     <button onclick=addToCart(${product.pk})>Masukkan Keranjang</button>
