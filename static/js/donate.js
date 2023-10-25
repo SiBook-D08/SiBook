@@ -11,18 +11,30 @@ function donateAjaxPost(e) {
             return;
         }
         const obj = await res.json();
+        const errorMsg = document.getElementById("error-message");
+        const successMsg = document.getElementById("success-message");
+        const fullMsg = document.getElementById("full-message");
+        const alrExistsMsg = document.getElementById("alr-exists-message")
         if (obj.status === "valid") {
-            document.getElementById("full-message").classList.add("hidden");
-            document.getElementById("error-message").classList.add("hidden");
-            document.getElementById("success-message").classList.remove("hidden");
+            errorMsg.classList.add("hidden");
+            fullMsg.classList.add("hidden");
+            alrExistsMsg.classList.add("hidden");
+            successMsg.classList.remove("hidden");
         } else if (obj.status === "invalid") {
-            document.getElementById("full-message").classList.add("hidden");
-            document.getElementById("success-message").classList.add("hidden");
-            document.getElementById("error-message").classList.remove("hidden");
-        } else if (obj.status === 'full') {
-            document.getElementById("error-message").classList.add("hidden");
-            document.getElementById("success-message").classList.add("hidden");
-            document.getElementById("full-message").classList.remove("hidden");
+            successMsg.classList.add("hidden");
+            fullMsg.classList.add("hidden");
+            alrExistsMsg.classList.add("hidden");
+            errorMsg.classList.remove("hidden");
+        } else if (obj.status === "full") {
+            errorMsg.classList.add("hidden");
+            successMsg.classList.add("hidden");
+            alrExistsMsg.classList.add("hidden");
+            fullMsg.classList.remove("hidden");
+        } else if (obj.status === "alrExists") {
+            errorMsg.classList.add("hidden");
+            successMsg.classList.add("hidden");
+            fullMsg.classList.add("hidden");
+            alrExistsMsg.classList.remove("hidden");
         }
     });
     formElement.reset();
