@@ -11,14 +11,12 @@ async function displayProductsBorrowed(products){
         htmlString += `\n<div class="col-lg-4 col-md-6 mb-4">
             <div id="${bookData.pk}" class="card h-100">
                 <div class="card-header-borrowed d-flex justify-content-between align-items-center">
-                    <h5 class="card-title mb-0">${bookData.fields.title}</h5>
+                    <h5 class="card-title mb-0" style="background-color:red; border-radius: 5px;"> NOT AVAILABLE</h5>
                 </div>
-                <div class="card-body-borrowed rounded-lg">
-					<p class="text-muted small">Id: ${bookData.pk}</p>
-                    <p class="text-muted small">Peminjam: ${userData.fields.username}</p>
-                    <p class="text-muted small">Penulis: ${bookData.fields.author}</p>
-                    <p class="text-muted small">Banyak Halaman: ${bookData.fields.num_pages}</p>
-                    <p class="card-text">${bookData.fields.description}</p>
+                <div class="card-body-borrowed rounded-lg" style="text-align:center;">	
+                    <strong> <p class="card-text">Peminjam: ${userData.fields.username}</p> </strong>
+                    <strong> <p class="card-text">${bookData.fields.title}</p> </strong>
+                    <strong> <p class="card-text">by: ${bookData.fields.author}</p> </strong>
                 </div>
                 <div class = card-footer-borrowed > </div>
             </div>
@@ -31,14 +29,12 @@ async function displayProducts(products){
     products.forEach((product, index) =>{
         htmlString += `\n<div class="col-lg-4 col-md-6 mb-4">
             <div id="${product.pk}" class="card h-100">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="card-title mb-0">${product.fields.title}</h5>
+                <div class="card-header d-flex justify-content-center align-items-center" style="text-align: center;">
+                    <h5 class="card-title mb-0" style="color: white; background-color: rgb(8, 169, 8); border-radius: 5px;">AVAILABLE</h5>
                 </div>
-                <div class="card-body rounded-lg">
-					<p class="text-muted small">Id: ${product.pk}</p>
-                    <p class="text-muted small">Penulis: ${product.fields.author}</p>
-                    <p class="text-muted small">Banyak Halaman: ${product.fields.num_pages}</p>
-                    <p class="card-text">${product.fields.description}</p>
+                <div class="card-body rounded-lg" style="text-align:center">
+                   <strong> <p class="card-text">${product.fields.title}</p> </strong>
+                   <strong> <p class="card-text">by: ${product.fields.author}</p> </strong>
                 </div>
                 <div class="card-footer d-flex justify-content-between align-items-center ">
                     <button onclick=addToCart(${product.pk})>Masukkan Keranjang</button>
@@ -75,7 +71,7 @@ async function displayCart(products){
     }
     
     if((htmlString.match(/Keluarkan/g) || []).length !== 0 && (htmlString.match(/Keluarkan/g) || []).length === (document.getElementById("cart").innerHTML.match(/Keluarkan/g) || []).length){
-        alert("Udah ada!")
+        alert("Buku sudah ada di keranjang")
     }
     document.getElementById("cart").innerHTML = htmlString
 }
