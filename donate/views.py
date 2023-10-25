@@ -4,8 +4,9 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 import json
+from django.contrib.auth.decorators import login_required
 
-# Create your views here.
+@login_required(login_url='/login')
 def donate_view(request: HttpRequest):
     return render(request, 'donate.html', {})
 
@@ -21,7 +22,7 @@ def add_book_ajax(request: HttpRequest):
             return HttpResponse(json.dumps(obj))
         
         obj['status'] = 'full'
-        if Book.objects.all().count() >= 100:
+        if Book.objects.all().count() >= 115:
             return HttpResponse(json.dumps(obj))
         
         obj['status'] = 'alrExists'
