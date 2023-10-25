@@ -22,17 +22,18 @@ def show_catalogue(request):
 
 @csrf_exempt
 def add_new_data(request):
-    if len(Book.objects.all()) >=100:
-        return HttpResponse("Book slot is full", status=202)
+    if len(Book.objects.all()) >= 100:
+        return HttpResponse("Book slot is full", status=402)
 
     data = json.loads(request.body.decode('utf-8'))
     title = data.get('title', '')
     author = data.get('author', '')
     description = data.get('description', '')
     num_pages = data.get('num_pages', '') or 1
+    img_url = data.get('img_url', '')
     avaliable = data.get('avaliable', '')
     
-    new_book = Book(title=title, author=author, description=description, num_pages=num_pages, avaliable=avaliable)
+    new_book = Book(title=title, author=author, description=description, num_pages=num_pages, img_url=img_url, avaliable=avaliable)
 
     if len(Book.objects.filter(title=title)) == 0:
         new_book.save()

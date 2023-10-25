@@ -13,11 +13,13 @@ async function fetchByLink(linkAPI, authorName){
 		const postData = {
 			title: bookInfo.title,
 			author: authorName,
-			description: bookInfo.description.slice(0,100),
+			description: bookInfo.description || "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
 			num_pages: bookInfo.pageCount,
+			img_url: bookInfo.imageLinks.smallThumbnail || "https://books.google.com/books/content?id=SXGCEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
 			avaliable: true,
 		};
 		
+		// console.log(bookInfo.title,bookInfo.description)
 		await fetch("add-new-data/", {
 			method: 'POST',
 			headers: {
