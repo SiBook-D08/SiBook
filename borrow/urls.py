@@ -10,4 +10,7 @@ urlpatterns = [
     path('get-books-borrowed/', get_books_borrowed, name='get_books_borrowed'),
     path('get-book-data/<int:id>/', get_book_data, name="get_book_data"),
     path('get-user-data/<int:id>/', get_user_data, name="get_user_data"),
+    path('get-cart/', get_cart, name="get_cart"),
+    path('remove-cart/<int:id>/', remove_from_cart, name="remove_from_cart"),
+    path('add-to-list/', add_to_list, name="add_to_list"),
 ]
