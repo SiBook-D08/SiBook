@@ -1,0 +1,81 @@
+/* * {
+    border: 1px solid red;
+} */
+
+.wallpaper {
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+                url("/static/images/home-bg.jpeg") center center no-repeat;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#donate-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #f0ebe3;
+    border: 4px solid white;
+    padding: 5vh 5%;
+    margin-left: 30vw;
+    margin-right: 30vw;
+    margin-top: 11vh;
+    margin-bottom: 5.5vh;
+    border-radius: 16px;
+}
+
+#donate-form > * {
+    flex: 1;
+}
+
+.donate-h1 {
+    text-align: center;
+}
+
+.field-grid {
+    /* display: flex;
+    flex-wrap: wrap;
+    gap: 4vh; */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 5vh;
+}
+
+.field-grid > * {
+    /* flex: 1 1 33.33%; */
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-container > div:first-child {
+    flex: 1;
+}
+
+.flex-container > div:nth-child(2) {
+    flex: 0 1 auto;
+    text-align: center;
+}
+
+#success-message {
+    color: green;
+    text-align: center;
+}
+
+#error-message {
+    color: #ff0000;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}

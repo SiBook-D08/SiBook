@@ -3,6 +3,8 @@
 {% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/about_us.css' %}" />
+
 <div class="devs">
     <h2>The Developers</h2>
     <div class="dev-details">
@@ -51,42 +53,4 @@
         </div>
     </div>
 </div>
-
-<style>
-    .devs {
-        display: flex;
-        flex-direction: column;
-        gap: 10vh;
-        padding: 10vh 20vw;
-    }
-
-    .devs > * {
-        flex: 1 1 0;
-    }
-
-    .devs > h2 {
-        text-align: center;
-    }
-
-    .dev-details {
-        display: flex;
-    }
-
-    .dev-details > * {
-        flex: 1;
-    }
-
-    .img-container {
-        display: flex;
-        max-width: 50%;
-        padding-right: 10%;
-    }
-
-    .img-container > img {
-        flex: 1;
-        object-fit: contain;
-        overflow: hidden;
-        border-radius: 50%;
-    }
-</style>
 {% endblock content %}
