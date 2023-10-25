@@ -114,3 +114,7 @@
     color: #0b36a8; /* needs to stay here because of the color property of a tag */
     text-decoration: none;
 }
+
+.card-footer{
+    background-color: #003300;
+}
