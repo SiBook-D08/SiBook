@@ -1,3 +1,4 @@
+from catalogue.models import Book
 from donate.forms import BookForm
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
@@ -6,28 +7,20 @@ import json
 
 # Create your views here.
 def donate_view(request: HttpRequest):
-    context = {}
-    if request.method == 'POST':
-        if not request.user.is_authenticated:
-            return redirect("/login/")
-        form = BookForm(request.POST or None)
-        if form.is_valid():
-            form.save()
-            context['success'] = 1
-        else:
-            context['error'] = 1
-
-    return render(request, 'donate.html', context)
+    return render(request, 'donate.html', {})
 
 @csrf_exempt
 def add_book_ajax(request: HttpRequest):
     if request.method == 'POST':
         if not request.user.is_authenticated:
             return HttpResponse(status=302)
-        obj = {'isValid': False}
+        obj = {'status': 'full'}
+        if Book.objects.all().count() >= 100:
+            return HttpResponse(json.dumps(obj))
+        obj['status'] = 'invalid'
         form = BookForm(request.POST or None)
         if form.is_valid():
             form.save()
-            obj['isValid'] = True
+            obj['status'] = 'valid'
 
         return HttpResponse(json.dumps(obj))

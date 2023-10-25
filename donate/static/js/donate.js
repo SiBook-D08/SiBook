@@ -11,12 +11,18 @@ function donateAjaxPost(e) {
             return;
         }
         const obj = await res.json();
-        if (obj.isValid) {
+        if (obj.status === "valid") {
+            document.getElementById("full-message").classList.add("hidden");
             document.getElementById("error-message").classList.add("hidden");
             document.getElementById("success-message").classList.remove("hidden");
-        } else {
+        } else if (obj.status === "invalid") {
+            document.getElementById("full-message").classList.add("hidden");
             document.getElementById("success-message").classList.add("hidden");
             document.getElementById("error-message").classList.remove("hidden");
+        } else if (obj.status === 'full') {
+            document.getElementById("error-message").classList.add("hidden");
+            document.getElementById("success-message").classList.add("hidden");
+            document.getElementById("full-message").classList.remove("hidden");
         }
     });
     formElement.reset();
