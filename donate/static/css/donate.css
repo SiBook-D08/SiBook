@@ -71,3 +71,12 @@
 .hidden {
     display: none;
 }
+.register{
+    width: 50%;
+    border-radius: 5px;
+    justify-content: center;
+    margin-top: 10px;
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+}

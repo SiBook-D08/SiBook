@@ -7,7 +7,13 @@ async function displayProductsBorrowed(products){
         const userResponse = await fetch(`get-user-data/${idUser}/`);
         const bookData = (await bookResponse.json())[0];
         const userData = (await userResponse.json())[0];
-        
+        let author= bookData.fields.author;
+        const koma = author.indexOf(",");
+        if (koma !== -1){
+            console.log(koma);
+            author=author.substring(0,koma) + ",et al.";
+        }
+        console.log(author)
         htmlString += `\n<div class="col-lg-4 col-md-6 mb-4">
             <div id="${bookData.pk}" class="card h-100">
                 <div class="card-header-borrowed d-flex justify-content-between align-items-center">
@@ -16,7 +22,7 @@ async function displayProductsBorrowed(products){
                 <div class="card-body-borrowed rounded-lg" style="text-align:center;">	
                     <strong> <p class="card-text">Peminjam: ${userData.fields.username}</p> </strong>
                     <strong> <p class="card-text">${bookData.fields.title}</p> </strong>
-                    <strong> <p class="card-text">by: ${bookData.fields.author}</p> </strong>
+                    <strong> <p class="card-text">by: ${author}</p> </strong>
                 </div>
                 <div class = card-footer-borrowed > </div>
             </div>
@@ -27,6 +33,12 @@ async function displayProductsBorrowed(products){
 async function displayProducts(products){
     let htmlString = ""
     products.forEach((product, index) =>{
+        let author = product.fields.author
+        const koma = author.indexOf(",");
+        if (koma !== -1){
+            console.log(koma);
+            author=author.substring(0,koma) + ",et al.";
+        }
         htmlString += `\n<div class="col-lg-4 col-md-6 mb-4">
             <div id="${product.pk}" class="card h-100">
                 <div class="card-header d-flex justify-content-center align-items-center" style="text-align: center;">
@@ -34,7 +46,7 @@ async function displayProducts(products){
                 </div>
                 <div class="card-body rounded-lg" style="text-align:center">
                     <strong> <p class="card-text">${product.fields.title}</p> </strong>
-                    <strong> <p class="card-text">by: ${product.fields.author}</p> </strong>
+                    <strong> <p class="card-text">by: ${author}</p> </strong>
                 </div>
                 <div class="card-footer d-flex justify-content-between align-items-center ">
                     <button onclick=addToCart(${product.pk})>Masukkan Keranjang</button>
