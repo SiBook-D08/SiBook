@@ -44,3 +44,17 @@ def add_new_data(request):
 def get_books(request):
     product_item = Book.objects.all()
     return HttpResponse(serializers.serialize('json', product_item))
+
+@csrf_exempt
+def edit_book(request):
+    data = json.loads(request.body.decode('utf-8'))
+    idBook = data.get('idBook', '')
+    description = data.get('description', '')
+
+    if Book.objects.filter(pk=idBook).count() == 0:
+        return HttpResponse('Book does not exist', status=402)
+
+    bookById = Book.objects.get(pk=idBook)
+    bookById.description = description
+    bookById.save()
+    return HttpResponse("Book Edited", status=200)
