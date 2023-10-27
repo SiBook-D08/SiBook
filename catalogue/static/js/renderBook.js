@@ -1,14 +1,18 @@
 async function displayProducts(products){
     let htmlString = ""
-    products.forEach((product, index) =>{
+    for(const product of products){
+        const response = (await fetch(`get-user-by-id/${product.fields.last_edited_user}/`))
+        const userEdit = (await response.json())[0]
         htmlString += `\n<div class="col-lg-4 col-md-6 mb-4">
-            <div id="${product.pk}" class="card h-100 ${index === products.length - 1 ? `last-product` : ``}">
+            <div id="${product.pk}" class="card h-100">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="card-title mb-0">${product.fields.title}</h5>
                 </div>
                 <div class="card-body rounded-lg">
                     <p class="text-muted small">Penulis: ${product.fields.author}</p>
+                    <p class="text-muted small card-text"  id="user-${product.pk}">Last Edited User: ${userEdit.fields.username}</p>
                     <p class="text-muted small card-text" id="description-card-${product.pk}">${product.fields.description.slice(0,100)}</p>
+
                 </div>
 
                 <div class="modal fade" id="exampleModal${product.pk}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -44,7 +48,7 @@ async function displayProducts(products){
                 <div class="card-footer"> <button data-bs-toggle="modal" data-bs-target="#exampleModal${product.pk}">See More</button> </div>
             </div>
         </div>`
-    })
+    }
     document.getElementById("product_cards").innerHTML = htmlString
 }
 
