@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Header -->
+<header id="header" class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="text-container">
+                    <h1 class="h1-large">Ini Ulasan Buku</h1>
+                    {% if user.is_authenticated %} <h1 class="h1-large">Halo {{ name }}</h1> {% endif %}
+                    <a class="btn-solid-lg page-scroll" href="#about">Discover</a>
+                </div> 
+            </div> 
+        </div> 
+    </div> 
+</header> 
+
+
+
+
+</br>
+
+
+</br>
+<h1 style="text-align: center; color: rgb(223, 211, 211)">Buku yang telah Diulas</h1>
+<div class="row pembatas">
+    <table>
+        <tr>
+            <th>User</th>
+            <th>Book</th>
+            <th>Ulasan</th>
+        </tr>
+    
+        {% for book in reviewed_books %}
+            <tr>
+                <td>{{book.user.username}}</td>
+                <td>{{book.book.title}}</td>
+                <td>{{book.review}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+
+
+
+<link rel="stylesheet" href="{% static 'css/review_return.css' %}" />
+<script src="{% static 'js/renderBorrowed.js' %}"></script>
+
+
+{% endblock content %}

@@ -18,6 +18,46 @@
 
 </br>
 
+<div class="container" style="border: 1px solid black; background-color: #F0EBE3; padding-bottom: 0.5%; max-width: 60%;border-radius: 10px; padding-top: 10px;">
+    <div class="d-flex justify-content-center align-items-center">
+        <h3  style="text-align: center; background-color: #003300; padding-top: 10%; padding: 5px; color: white; border-radius: 10px;">Mau edit deskripsi buku?</h3> 
+    </div>
+    <div class="d-flex justify-content-center align-items-center">
+        <h3  style="text-align: center; background-color: #003300; padding-top: 10%; padding: 5px; color: white; border-radius: 10px;">Edit di sini :O</h3>
+    </div>
+    
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="container">
+            <form id="edit-book-form" method="post">
+                {% csrf_token %} <!-- Include the CSRF token -->
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="idBook">Book's Id:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="number" name="idBook" id="idBook" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="description">Book's new description:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" name="description" id="description" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</br>
+
 <div class="search-container">
     <form id="searchForm" onsubmit="searchProducts(event)">
         <input type="text" id="searchInput" placeholder="Search...">
@@ -29,10 +69,22 @@
 </div>
 </br>
 <div class="row pembatas" id="product_cards"></div>
+</br>
+
+
+
+
 
 <link rel="stylesheet" href="{% static 'css/catalogue.css' %}" />
 <script src="{% static 'js/fetchBook.js' %}"></script>
 <script src="{% static 'js/renderBook.js' %}"></script>
 <script src="{% static 'js/searchBar.js' %}"></script>
+<script src="{% static 'js/editBook.js' %}"></script>
 {% endblock content %}
 
+<!-- 
+1. bikin fitur baru di katalog yang pake forms.py + ajax
+2. review buku 
+
+bikin form biasa + ajax == 10 poin
+-->

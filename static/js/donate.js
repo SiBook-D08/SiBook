@@ -14,7 +14,7 @@ function donateAjaxPost(e) {
         const errorMsg = document.getElementById("error-message");
         const successMsg = document.getElementById("success-message");
         const fullMsg = document.getElementById("full-message");
-        const alrExistsMsg = document.getElementById("alr-exists-message")
+        const alrExistsMsg = document.getElementById("alr-exists-message");
         if (obj.status === "valid") {
             errorMsg.classList.add("hidden");
             fullMsg.classList.add("hidden");

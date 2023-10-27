@@ -26,11 +26,9 @@ def add_book_ajax(request: HttpRequest):
             return HttpResponse(json.dumps(obj))
         
         obj['status'] = 'alrExists'
-        title = request.POST["title"]
-        author = request.POST["author"]
         book = None
         try:
-            book = Book.objects.get(title=title, author=author)
+            book = Book.objects.get(title=request.POST["title"])
         except:
             pass
         if book:
