@@ -104,3 +104,27 @@ body{
 .header .btn-outline-lg .fas {
     margin-right: 0.375rem;
 }
+
+.btn-solid-lg {
+    display: inline-block;
+    padding: 1.625rem 2.625rem 1.625rem 2.625rem;
+    border: 1px solid #0b36a8;
+    background-color: #0b36a8;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.875rem;
+    line-height: 0;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.btn-solid-lg:hover {
+    background-color: transparent;
+    color: #0b36a8; /* needs to stay here because of the color property of a tag */
+    text-decoration: none;
+}
+
+#scrollToBooks {
+    margin-right: 10px;
+}
+
