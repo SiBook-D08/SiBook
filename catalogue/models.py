@@ -9,3 +9,4 @@ class Book(models.Model):
     num_pages = models.IntegerField()
     img_url = models.TextField(default="https://books.google.com/books/content?id=SXGCEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api")
     avaliable = models.BooleanField(default=True)
+    favorited = models.BooleanField(default=False)

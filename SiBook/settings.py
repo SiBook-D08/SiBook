@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'about_us',
     'donate',
     'borrow',
+    'review_return',
     'favorite',
 ]
 

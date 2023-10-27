@@ -10,10 +10,8 @@ async function displayProductsBorrowed(products){
         let author= bookData.fields.author;
         const koma = author.indexOf(",");
         if (koma !== -1){
-            console.log(koma);
             author=author.substring(0,koma) + ",et al.";
         }
-        console.log(author)
         htmlString += `\n<div class="col-lg-4 col-md-6 mb-4">
             <div id="${bookData.pk}" class="card h-100">
                 <div class="card-header-borrowed d-flex justify-content-between align-items-center">
@@ -36,7 +34,6 @@ async function displayProducts(products){
         let author = product.fields.author
         const koma = author.indexOf(",");
         if (koma !== -1){
-            console.log(koma);
             author=author.substring(0,koma) + ",et al.";
         }
         htmlString += `\n<div class="col-lg-4 col-md-6 mb-4">

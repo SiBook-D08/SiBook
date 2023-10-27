@@ -36,4 +36,8 @@ async function fetchAllBook() {
     }
 }
 
+async function getProducts() {
+    return fetch("get-books/").then((res) => res.json())
+}
+
 fetchAllBook()
