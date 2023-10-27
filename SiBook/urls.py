@@ -24,4 +24,6 @@ urlpatterns = [
     path('borrow/', include('borrow.urls')),
     path('about-us/', include('about_us.urls')),
     path('donate/', include('donate.urls')),
+    path('favorite/', include('favorite.urls')),
+
 ]
