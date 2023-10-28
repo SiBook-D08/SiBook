@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block meta %}
+<link rel="stylesheet" href="{% static 'css/favorite.css' %}" />
+{% endblock meta %}
+
+{% block content %}
+<!-- Header -->
+<header id="header" class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="text-container">
+                    {% if user.is_authenticated %} <h1 class="h1-large">Halo {{ username }}</h1> {% endif %}
+                    <h1 class="h1-large">Siap Memfavoritkan Buku Kesukaan Kamu?</h1>
+                    <a class="btn-solid-lg page-scroll" href="#about">Discover</a>
+                </div> 
+            </div> 
+        </div> 
+    </div> 
+</header> 
+<!-- background-color: #003300;
+background-color: #F0EBE3 -->
+<br>
+
+<div class="search-container">
+    <form id="searchForm" onsubmit="searchProducts(event)">
+        <input type="text" id="searchInput" placeholder="Search...">
+        <label class="text-search"><input type="checkbox" id="searchTitle" > Title</label>
+        <label class="text-search"><input type="checkbox" id="searchAuthor" > Author</label>
+        <label class="text-search"><input type="checkbox" id="searchNumPages" > Max Pages</label>
+        <button class="button-search" type="submit">Search</button>
+    </form>
+</div>
+
+<div style="display: flex; justify-content: center;" class="mt-4">
+    <button id="scrollToBooks" class="button-search">Lihat Daftar Buku</button>
+</div>
+
+
+<div class="container mt-4" style="border: 1px solid black; background-color: #F0EBE3; padding-bottom: 0.5%; max-width: 80%;border-radius: 10px; padding-top: 10px;">
+    <div style="padding-left: 10%; padding-right: 10%; padding-top: 5px;">
+        <h1 style="text-align: center; background-color: #003300; padding-top: 10%; padding: 5px; color: white; border-radius: 10px;">Buku-buku Favorit Kamu</h1>
+    </div>
+
+    <div class="row pembatas" id ="favorited_book_cards"></div>
+</div>
+
+<br>
+<div class="row pembatas" id="product_cards"></div>
+<br>
+
+<script cache="reload" rel="preload" src="{% static 'js/favorite.js' %}"></script>
+<script src="{% static 'js/searchBarFavorite.js' %}"></script>
+{% endblock content %}

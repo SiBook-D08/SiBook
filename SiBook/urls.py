@@ -25,4 +25,6 @@ urlpatterns = [
     path('about-us/', include('about_us.urls')),
     path('donate/', include('donate.urls')),
     path('returnBook/',include('review_return.urls')),
+    path('favorite/', include('favorite.urls')),
+
 ]

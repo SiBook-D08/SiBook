@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'donate',
     'borrow',
     'review_return',
+    'favorite',
 ]
 
 MIDDLEWARE = [
