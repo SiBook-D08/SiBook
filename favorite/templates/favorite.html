@@ -30,7 +30,7 @@ background-color: #F0EBE3 -->
         <input type="text" id="searchInput" placeholder="Search...">
         <label class="text-search"><input type="checkbox" id="searchTitle" > Title</label>
         <label class="text-search"><input type="checkbox" id="searchAuthor" > Author</label>
-        <label class="text-search"><input type="checkbox" id="searchNumPages" >Max Pages</label>
+        <label class="text-search"><input type="checkbox" id="searchNumPages" > Max Pages</label>
         <button class="button-search" type="submit">Search</button>
     </form>
 </div>
@@ -49,9 +49,9 @@ background-color: #F0EBE3 -->
 </div>
 
 <br>
-<div class="row pembatas" id="book_cards"></div>
+<div class="row pembatas" id="product_cards"></div>
 <br>
 
 <script cache="reload" rel="preload" src="{% static 'js/favorite.js' %}"></script>
-<script src="{% static 'js/searchBar.js' %}"></script>
+<script src="{% static 'js/searchBarFavorite.js' %}"></script>
 {% endblock content %}

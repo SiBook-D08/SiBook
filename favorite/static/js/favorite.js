@@ -1,3 +1,4 @@
+
 async function showBooks(books){
     let htmlString = ""
     books.forEach((book, index) =>{
@@ -46,7 +47,7 @@ async function showBooks(books){
             </div>
         </div>`
     })
-    document.getElementById("book_cards").innerHTML = htmlString
+    document.getElementById("product_cards").innerHTML = htmlString
 }
 
 async function showFavoritedBooks(books){
