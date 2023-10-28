@@ -12,5 +12,5 @@ urlpatterns = [
     path('get-user-data/<int:id>/', get_user_data, name="get_user_data"),
     path('just-return-book/<int:id>/',just_return,name="just_return_book"),
     path('add-review/',review_and_return_books,name="review_and_return_book"),
-    path('user_reviews/',show_review,name="show_reviews")
+    path('user-reviews/',show_review,name="show_reviews")
 ]

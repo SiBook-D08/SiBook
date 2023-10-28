@@ -5,6 +5,19 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from django.core import serializers
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
+
+def show_review(request):
+    reviewedBooks = GiveBack.objects.all()
+    
+    context = {
+        'name': request.user.username,
+        'reviewed_books': reviewedBooks,
+    }
+    return render(request, "book_review.html",context)
+
+@login_required(login_url='/login')
+
 # Create your views here.
 def show_main(request):
     borrowedBooks = Loan.objects.all()
@@ -17,13 +30,6 @@ def show_main(request):
     }
     return render(request, "review_return.html",context)
 
-def show_review(request):
-    reviewedBooks = GiveBack.objects.all()
-    
-    context = {
-        'reviewed_books': reviewedBooks,
-    }
-    return render(request, "book_review.html",context)
 
 #Make it so you delete from Loan Model and add a review IF text field isnt empty
 @csrf_exempt
