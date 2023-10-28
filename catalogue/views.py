@@ -23,7 +23,7 @@ def show_catalogue(request):
 @csrf_exempt
 def add_new_data(request):
     if Book.objects.all().count() >= 100: 
-        return HttpResponse("Book slot is full", status=402)
+        return HttpResponse("Book slot is full", status=202)
 
     data = json.loads(request.body.decode('utf-8'))
     title = data.get('title', '')
@@ -56,5 +56,14 @@ def edit_book(request):
 
     bookById = Book.objects.get(pk=idBook)
     bookById.description = description
+    bookById.last_edited_user = request.user
     bookById.save()
     return HttpResponse("Book Edited", status=200)
+
+def get_user_by_id(request, id):
+    users = User.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize('json', users))
+
+def get_current_user(request):
+    users = User.objects.filter(pk=request.user.pk)
+    return HttpResponse(serializers.serialize('json', users))
