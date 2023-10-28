@@ -134,6 +134,55 @@
     .review-modal::backdrop{
         background: rgba(0, 0, 0, 0.6);
     }
+    .review_card {
+        display: flex;
+        flex-direction: column;
+        max-width: 89%;
+        border-radius: 10px;
+        margin: 10px;
+        border-width: 5px;
+        border-color: black;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .tabs {
+        display: flex;
+        background-color: #003300;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        color: #ffffff;
+    }
+
+    .left-tab {
+        flex: 0.8;
+        padding: 10px;
+        padding-left: 2%;
+        position: relative;
+        font-size: 120%;
+        ;
+    }
+
+    .right-tab {
+        flex: 0.2;
+        padding: 10px;
+    }
+    .tab-divider {
+        flex: 0;
+        width: 0;
+        border-right: 1px solid #ccc;
+    }
+
+
+    .tab-content {
+        padding: 10px;
+        padding-left: 2%;
+        background-color: #F0EBE3;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius:10px;
+    }
+
+
     
     
     

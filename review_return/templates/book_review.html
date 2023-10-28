@@ -25,21 +25,21 @@
 </br>
 <h1 style="text-align: center; color: rgb(223, 211, 211)">Buku yang telah Diulas</h1>
 <div class="row pembatas">
-    <table>
-        <tr>
-            <th>User</th>
-            <th>Book</th>
-            <th>Ulasan</th>
-        </tr>
-    
+    <div class="review_card">
         {% for book in reviewed_books %}
-            <tr>
-                <td>{{book.user.username}}</td>
-                <td>{{book.book.title}}</td>
-                <td>{{book.review}}</td>
-            </tr>
+        <div style="margin-bottom: 3%;">
+            <div class="tabs">
+                <div class="left-tab">{{book.book.title}}</div>
+                <div class="tab-divider"></div>
+                <div class="right-tab">{{book.review_date}}</div>
+            </div>
+            <div class="tab-content">
+                <p> ✾ From : {{book.user.username}}</p>
+                <div style="margin-left: 1%;"><p>{{book.review}}</p></div>
+            </div>
+        </div>
         {% endfor %}
-    </table>
+    </div>
 </div>
 
 

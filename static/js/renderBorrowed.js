@@ -7,7 +7,6 @@ async function displayProductsBorrowed(products){
         const userResponse = await fetch(`get-user-data/${idUser}/`);
         const bookData = (await bookResponse.json())[0];
         const userData = (await userResponse.json())[0];
-        console.log(idUser, userData)
         htmlString += `\n<div class="col-lg-4 col-md-6 mb-4">
             <div id="${bookData.pk}" class="card h-100">
                 <div class="card-header-borrowed d-flex justify-content-between align-items-center">
@@ -18,7 +17,6 @@ async function displayProductsBorrowed(products){
                     <p class="text-muted small">Peminjam: ${userData.fields.username}</p>
                     <p class="text-muted small">Penulis: ${bookData.fields.author}</p>
                     <p class="text-muted small">Banyak Halaman: ${bookData.fields.num_pages}</p>
-                    <p class="card-text">${bookData.fields.description}</p>
                 </div>
                 <div class="card-footer d-flex justify-content-between align-items-center ">
                 <button class="open-button" id="open-button">Return</button>
@@ -63,7 +61,6 @@ async function returnBook(id){
 }
 
 async function reviewBook(bookId,userId,review){
-    console.log(bookId,userId,review)
     let formData = new FormData();
     formData.append('user', userId);
     formData.append('book', bookId);
@@ -97,7 +94,6 @@ document.getElementById("product_cards_borrowed").addEventListener("click", func
         let review = textField.value.trim();
         if (review === '') {
             // If the description is empty, call the just_return view
-            console.log(bookId)
             returnBook(bookId)
         }
         else{
