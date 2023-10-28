@@ -136,7 +136,7 @@ async function refreshEveryBook(){
 }
 
 document.getElementById('scrollToBooks').addEventListener('click', function() {
-    document.getElementById('book_cards').scrollIntoView({behavior: "smooth"});
+    document.getElementById('product_cards').scrollIntoView({behavior: "smooth"});
 });
 
 refreshEveryBook()
