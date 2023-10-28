@@ -12,13 +12,37 @@ async function showBooks(books){
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="card-title mb-0" ">${book.fields.title}</h5>
                 </div>
+
                 <div class="card-body rounded-lg">
-                    <p class="card-text">Penulis: ${author}</p>
+                    <strong> <p class="card-text">Penulis: ${author}</p> </strong>
                     <p class="card-text">${book.fields.description.slice(0,100)}</p>
                 </div>
-                <div class="card-footer d-flex justify-content-between align-items-center ">
-                    <button onclick=addToFavorited(${book.pk})>Favoritkan</button>
+
+                <div class="modal fade" id="exampleModal${book.pk}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Favoritkan Buku</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="form${book.pk}" onsubmit="return false;">
+                                    <div class="mb-3">
+                                        <label for="alasan${book.pk}" class="col-form-label">Apa alasan kamu memfavoritkan buku ini?</label>
+                                        <input type="text" class="form-control" id="alasan${book.pk}" name="alasan" required></input>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batalkan</button>
+                                <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal" onclick=addToFavorited(${book.pk})>Favoritkan</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                
+                <div class="card-footer"> <button class="text-search" data-bs-toggle="modal" data-bs-target="#exampleModal${book.pk}">Tambahkan ke Favorit</button> </div>
+                
             </div>
         </div>`
     })
@@ -41,35 +65,51 @@ async function showFavoritedBooks(books){
             author=author.substring(0,koma) + ",et al.";
         }
 
-        htmlString += `\n<div class="col-lg-4 col-md-6 mb-4">
-            <div id="${bookData.pk}" class="card h-100">
-                <div class="card-header-favorited d-flex justify-content-between align-items-center">
-                    <h5 class="card-title mb-0" style="background-color:red; border-radius: 5px;"> UNAVAILABLE</h5>
+        htmlString += `\n
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div id="${bookData.pk}" class="card h-100" style="border: 2px solid #003300;">
+                <div class="card-header favorited d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0" ">${bookData.fields.title}</h5>
                 </div>
-                <div class="card-body-favorited rounded-lg" style="text-align:center;">	
-                    <strong> <p class="card-text">Peminjam: ${userData.fields.username}</p> </strong>
-                    <strong> <p class="card-text">${bookData.fields.title}</p> </strong>
-                    <strong> <p class="card-text">by: ${author}</p> </strong>
+                <div class="card-body favorited rounded-lg">	
+                    <p class="card-text">Alasan kamu memfavoritkan buku ini:</p> 
+                    <strong> <p class="card-text">${book.fields.alasan}</p> </strong>
                 </div>
-                <div class = card-footer-favorited > </div>
+                <div class="card-footer d-flex justify-content-between align-items-center ">
+                    <button class="text-search" onclick=removeFromFavorited(${book.pk})>Hapus dari Favorit</button>
+                </div>
             </div>
         </div>`
     }
-    document.getElementById("cards_favorited_book").innerHTML = htmlString
+    document.getElementById("favorited_book_cards").innerHTML = htmlString
 }
 
 async function addToFavorited(id){
+    const alasan = document.getElementById('alasan' + id).value;
+    if (!alasan) {
+        alert('Alasan wajib diisi!');
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('alasan', alasan);
+
     fetch(`add-to-favorited/${id}/`, {
         method: 'POST',
+        body: formData,
     }).then(await getFavoritedBooks()).then(showFavoritedBooks(await getFavoritedBooks()))
+    refreshEveryBook()
+    document.getElementById('favorited_book_cards').scrollIntoView({behavior: "smooth"});
 }
 
-async function removeFromFavorited(id) {
-    fetch(`remove-from-favorited/${id}/`, {
+async function removeFromFavorited(id){
+    await fetch(`remove-from-favorited/${id}/`, {
         method: 'POST',
-    }).then(await getFavoritedBooks()).then(showFavoritedBooks(await getFavoritedBooks()))
-    
+    })
+    showFavoritedBooks(await getFavoritedBooks())
+    refreshEveryBook()
 }
+
 
 async function getBooks() { 
     return fetch("get-books/").then((res) => res.json()) 
@@ -89,9 +129,13 @@ async function refreshFavoritedBooks(){
     showFavoritedBooks(books)
 }
 
-async function refreshEveryProduct(){
+async function refreshEveryBook(){
     refreshBooks()
     refreshFavoritedBooks()
 }
 
-refreshEveryProduct()
+document.getElementById('scrollToBooks').addEventListener('click', function() {
+    document.getElementById('book_cards').scrollIntoView({behavior: "smooth"});
+});
+
+refreshEveryBook()
