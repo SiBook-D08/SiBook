@@ -13,6 +13,8 @@ import json
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import Book
+from .forms import EditBookForm
+
 
 def show_catalogue(request):
     context = {
@@ -48,17 +50,21 @@ def get_books(request):
 @csrf_exempt
 def edit_book(request):
     data = json.loads(request.body.decode('utf-8'))
-    idBook = data.get('idBook', '')
-    description = data.get('description', '')
+    edit_form = EditBookForm(data)
+    if edit_form.is_valid():
+        data = json.loads(request.body.decode('utf-8'))
+        idBook = data.get('idBook', '')
+        description = data.get('description', '')
 
-    if Book.objects.filter(pk=idBook).count() == 0:
-        return HttpResponse('Book does not exist', status=402)
+        if Book.objects.filter(pk=idBook).count() == 0:
+            return HttpResponse('Book does not exist', status=402)
 
-    bookById = Book.objects.get(pk=idBook)
-    bookById.description = description
-    bookById.last_edited_user = request.user
-    bookById.save()
-    return HttpResponse("Book Edited", status=200)
+        bookById = Book.objects.get(pk=idBook)
+        bookById.description = description
+        bookById.last_edited_user = request.user
+        bookById.save()
+        return HttpResponse("Book Edited", status=200)
+    return HttpResponse('Form is not valid', status=402)
 
 def get_user_by_id(request, id):
     users = User.objects.filter(pk=id)

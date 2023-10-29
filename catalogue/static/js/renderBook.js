@@ -53,7 +53,9 @@ async function displayProducts(products){
 }
 
 async function getProducts() {
-    return fetch("get-books/").then((res) => res.json())
+    return fetch("get-books/",{
+        method: 'GET',
+    }).then((res) => res.json())
 }
 
 async function refreshProducts(){
