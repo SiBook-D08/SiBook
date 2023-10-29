@@ -8,9 +8,18 @@
         margin: 3vh 0.3vw 0 0.3vw;
     }
     .text-search{
-    background-color:#F0EBE3 ;
-    padding: 5px;
-    border-radius: 5px;
+        background-color:#F0EBE3 ;
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    .search-bar{
+        background-color:#F0EBE3 ;
+        padding: 5px;
+        border-radius: 5px;
+        min-width: 300px;
+        border-width: 2px;
+        border-color: black;
     }
     .button-search{
         background-color:#003300 ;
@@ -33,6 +42,16 @@
         flex-direction: column;
         
     }
+    .inside-card{
+        display: flex;
+        flex-direction: row;
+    }
+
+    .content-inside-card{
+        margin-left: 6%;
+        align-items: center;
+    }
+
     .card-header-borrowed{
         background-color: #a6a6a6;
         display: flex;
@@ -182,6 +201,22 @@
         border-bottom-right-radius:10px;
     }
 
+    .noBorrowed{
+        padding-top: 10%;
+        padding-bottom: 8%;
+        text-align: center;
+        color: crimson;
+        font-style: oblique;
+    }
+
+    .sort-select {
+        background-color:#F0EBE3 ;
+        padding: 5px;
+        border-radius: 5px;
+        color: black;
+        border-width: 2px;
+        border-color: black;
+    }
 
     
     

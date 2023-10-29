@@ -74,3 +74,11 @@ def get_book_data(request, id):
 def get_user_data(request, id):
     user = User.objects.filter(pk=id)
     return HttpResponse(serializers.serialize('json', user))
+
+def get_reviews(request):
+    review=GiveBack.objects.all()
+    return HttpResponse(serializers.serialize('json', review))
+
+def get_reviews_experimental(request):
+    reviews = GiveBack.objects.select_related('book').all()
+    return HttpResponse(serializers.serialize('json', reviews))

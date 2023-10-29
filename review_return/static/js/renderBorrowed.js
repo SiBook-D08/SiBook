@@ -1,5 +1,9 @@
 async function displayProductsBorrowed(products){
     let htmlString = ""
+    if (products.length === 0) {
+        htmlString = '<h1 class="noBorrowed">You haven\'t borrowed any books.</h1>';}
+
+    else{
     for(const product of products){
         const idBook = product.fields.book
         const idUser = product.fields.user
@@ -7,34 +11,43 @@ async function displayProductsBorrowed(products){
         const userResponse = await fetch(`get-user-data/${idUser}/`);
         const bookData = (await bookResponse.json())[0];
         const userData = (await userResponse.json())[0];
-        htmlString += `\n<div class="col-lg-4 col-md-6 mb-4">
+        htmlString += `\n<div class="col-lg-3 col-md-6 mb-4">
             <div id="${bookData.pk}" class="card h-100">
                 <div class="card-header-borrowed d-flex justify-content-between align-items-center">
                     <h5 class="card-title mb-0">${bookData.fields.title}</h5>
                 </div>
                 <div class="card-body rounded-lg">
-					<p class="text-muted small">Id: ${bookData.pk}</p>
+                    <div class="inside-card">
+                    <img src="${bookData.fields.img_url}" style="width: 120px; height: 160px; object-fit: cover; margin-left: 4%; border-radius: 10px;">
+                    <div class="content-inside-card">
+                    <p class="text-muted small" style="margin-top: 10px;">Id: ${bookData.pk}</p>
                     <p class="text-muted small">Peminjam: ${userData.fields.username}</p>
                     <p class="text-muted small">Penulis: ${bookData.fields.author}</p>
                     <p class="text-muted small">Banyak Halaman: ${bookData.fields.num_pages}</p>
+                    </div>
+                    </div>
+					
                 </div>
-                <div class="card-footer d-flex justify-content-between align-items-center ">
-                <button class="open-button" id="open-button">Return</button>
-                    <dialog class="review-modal" id="modal">
-                        <h2>Return "${bookData.fields.title}" ?</h2>
-                        <br>
-                        <form class="giveback-form" method="dialog">
-                            <input type="hidden" name="user" value="${idUser}">
-                            <input type="hidden" name="book" value="${bookData.pk}">
-                            <textarea class="inpText" cols="50" rows="4" placeholder="Write your review of the book" background-colour: #f0ecce3></textarea>
-                            <button class="close-button" id="close-button">Close</button>
-                            <button class="return-button" type="submit">Return Book</button>
-                        </form>
-                    </dialog>
+        
+                <div class="card-footer">
+                    <div style="width: 25%; margin: 0 auto;">
+                    <button class="open-button" id="open-button">Return</button>
+                        <dialog class="review-modal" id="modal">
+                            <h2>Return "${bookData.fields.title}" ?</h2>
+                            <br>
+                            <form class="giveback-form" method="dialog">
+                                <input type="hidden" name="user" value="${idUser}">
+                                <input type="hidden" name="book" value="${bookData.pk}">
+                                <textarea class="inpText" cols="50" rows="4" placeholder="Write your review of the book" background-colour: #f0ecce3></textarea>
+                                <button class="close-button" id="close-button">Close</button>
+                                <button class="return-button" type="submit">Return Book</button>
+                            </form>
+                        </dialog>
+                    </div>
                 </div>
             </div>
         </div>`
-    }
+    }}
     document.getElementById("product_cards_borrowed").innerHTML = htmlString
 }
 

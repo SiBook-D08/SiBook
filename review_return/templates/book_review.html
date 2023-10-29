@@ -7,8 +7,8 @@
         <div class="row">
             <div class="col-lg-6">
                 <div class="text-container">
-                    <h1 class="h1-large">Ini Ulasan Buku</h1>
                     {% if user.is_authenticated %} <h1 class="h1-large">Halo {{ name }}</h1> {% endif %}
+                    <h1 class="h1-large">Lihat ulasan buku dari user lain</h1>
                     <a class="btn-solid-lg page-scroll" href="#about">Discover</a>
                 </div> 
             </div> 
@@ -22,30 +22,29 @@
 </br>
 
 
+
 </br>
 <h1 style="text-align: center; color: rgb(223, 211, 211)">Buku yang telah Diulas</h1>
+
+<div class="search-container">
+    <form id="searchForm" onsubmit="searchProducts(event)">
+        <input class="search-bar" type="text" id="searchInput" placeholder="Search for reviewed books">
+        <select id="sort-select" class="sort-select">
+            <option value="newest">Newest</option>
+            <option value="oldest">Oldest</option>
+        </select>
+        <button class="button-search" type="submit">Search</button>
+    </form>
+</div>
+
 <div class="row pembatas">
-    <div class="review_card">
-        {% for book in reviewed_books %}
-        <div style="margin-bottom: 3%;">
-            <div class="tabs">
-                <div class="left-tab">{{book.book.title}}</div>
-                <div class="tab-divider"></div>
-                <div class="right-tab">{{book.review_date}}</div>
-            </div>
-            <div class="tab-content">
-                <p> ✾ From : {{book.user.username}}</p>
-                <div style="margin-left: 1%;"><p>{{book.review}}</p></div>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
+    <div class="review_card" id="reviewCard"></div>
 </div>
 
 
 
 <link rel="stylesheet" href="{% static 'css/review_return.css' %}" />
-<script src="{% static 'js/renderBorrowed.js' %}"></script>
+<script src="{% static 'js/renderReview.js' %}"></script>
 
 
 {% endblock content %}
