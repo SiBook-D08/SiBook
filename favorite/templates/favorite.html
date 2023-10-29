@@ -15,7 +15,7 @@
                 <div class="text-container">
                     {% if user.is_authenticated %} <h1 class="h1-large">Halo {{ username }}</h1> {% endif %}
                     <h1 class="h1-large">Siap Memfavoritkan Buku Kesukaan Kamu?</h1>
-                    <a class="btn-solid-lg page-scroll" href="#about">Discover</a>
+                    <a class="btn-solid-lg page-scroll" href="/about-us/">Discover</a>
                 </div> 
             </div> 
         </div> 
@@ -53,5 +53,4 @@ background-color: #F0EBE3 -->
 <br>
 
 <script cache="reload" rel="preload" src="{% static 'js/favorite.js' %}"></script>
-<script src="{% static 'js/searchBarFavorite.js' %}"></script>
 {% endblock content %}
