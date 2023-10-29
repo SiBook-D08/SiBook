@@ -33,16 +33,16 @@ def get_user_data(request, id):
 
 @csrf_exempt
 def add_to_favorited(request, id):
-    form = FavoritedBookForm(request.POST or None)
-
-    if form.is_valid() and request.method == "POST":
-        book = Book.objects.get(pk=id)
-        if not(FavoritedBooks.objects.filter(user=request.user, book=book).exists()):
-            alasan = request.POST.get('alasan')
-            favorited_book = FavoritedBooks(user=request.user, book=book, alasan=alasan)
-            favorited_book.save()
-            book.favorited = True
-            book.save()
+    if request.method == "POST":
+        form = FavoritedBookForm(request.POST)
+        if form.is_valid(): 
+            book = Book.objects.get(pk=id)
+            if not(FavoritedBooks.objects.filter(user=request.user, book=book).exists()):
+                alasan = form.cleaned_data.get("alasan")
+                favorited_book = FavoritedBooks(user=request.user, book=book, alasan=alasan)
+                favorited_book.save()
+                book.favorited = True
+                book.save()
 
     return redirect('favorite:show_main')    
 
