@@ -97,14 +97,13 @@ async function addToFavorited(id){
         return;
     }
 
-    const formData = new FormData();
-    formData.append('alasan', alasan);
-
     fetch(`add-to-favorited/${id}/`, {
         method: 'POST',
-        body: formData,
+        body: new FormData(document.querySelector('#form'+id)),
     }).then(await getFavoritedBooks()).then(showFavoritedBooks(await getFavoritedBooks()))
     refreshEveryBook()
+
+    document.getElementById('form' + id).reset()
     document.getElementById('favorited_book_cards').scrollIntoView({behavior: "smooth"});
 }
 

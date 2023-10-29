@@ -1,4 +1,3 @@
-
 async function searchProducts(event) {
     event.preventDefault();
     const searchInput = document.getElementById('searchInput').value;
