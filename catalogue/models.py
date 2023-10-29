@@ -11,4 +11,4 @@ class Book(models.Model):
     img_url = models.TextField(default="https://books.google.com/books/content?id=SXGCEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api")
     avaliable = models.BooleanField(default=True)
     favorited = models.BooleanField(default=False)
-    last_edited_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    last_edited_user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
