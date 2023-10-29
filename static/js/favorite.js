@@ -52,6 +52,11 @@ async function showBooks(books){
 
 async function showFavoritedBooks(books){
     let htmlString = ""
+
+    if (books.length == 0){
+        htmlString = '<strong> <p style="text-align: center;"> Kamu belum memiliki buku favorit ＞︿＜ </p> </strong>'
+    }
+
     for(const book of books){
         const bookID = book.fields.book
         const userID = book.fields.user
