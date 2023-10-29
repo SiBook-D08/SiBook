@@ -14,19 +14,24 @@ Kelompok kami mengambil dataset buku dari [Google Books API](https://developers.
 Berikut merupakan daftar modul yang akan diimplementasikan beserta pengembang dari modul tersebut
 - Autentikasi User dan Katalog Buku - [Adrian Aryaputra Hamzah](https://github.com/mnqrt)
 - Peminjaman Buku - [Gabriella Naomi Hutagalung](https://github.com/gnh374) 
-- Pengembalian Buku - [Muhammad Hilmy Abdul Aziz](https://github.com/Hilmy224)
+- Pengembalian dan Pengulasan Buku - [Muhammad Hilmy Abdul Aziz](https://github.com/Hilmy224)
 - Favoritkan Buku - [Reza Apriono](https://github.com/rzapriono)
-- About Us - [Fernanda Nadhiftya Putra](https://github.com/adipppp)
+- About Us dan Donasi Buku  - [Fernanda Nadhiftya Putra](https://github.com/adipppp)
 
 ##  Otorisasi 
 ### Pengguna yang belum login dapat:
 - Melihat katalog buku yang ada
-- Mengakses laman `about us`
+- Mengakses halaman `about us`
+- Melihat buku yang sudah diulas
 
 ### Pengguna yang sudah login dapat:
 - Mengakses seluruh fitur dari user yang tidak login
+- Mengubah deskripsi buku berdasarkan id
 - Melakukan peminjaman buku sekaligus melihat kumpulan buku yang telah dipinjam
+- Melakukan request buku yang belum ada.
+- Melakukan pengembalian buku serta mengulas buku
 - Memfavoritkan buku sekaligus melihat kumpulan buku yang telah difavoritkan
+- Mendonasikan buku
 
 ## Anggota Kelompok
 Berikut merupakan anggota kelompok beserta pengembang proyek SiBook
@@ -35,7 +40,4 @@ Berikut merupakan anggota kelompok beserta pengembang proyek SiBook
 - [Gabriella Naomi Hutagalung](https://github.com/gnh374) -  2206081616
 - [Muhammad Hilmy Abdul Aziz](https://github.com/Hilmy224) - 2206828701
 - [Reza Apriono](https://github.com/rzapriono) - 2206827945
-
-
-
 
