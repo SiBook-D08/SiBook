@@ -35,6 +35,8 @@ def add_book_ajax(request: HttpRequest):
             return HttpResponse(json.dumps(obj))
 
         obj['status'] = 'valid'
+        form = form.save(commit=False)
+        form.last_edited_user = request.user
         form.save()
 
         return HttpResponse(json.dumps(obj))
