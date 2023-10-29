@@ -81,9 +81,18 @@ def remove_from_cart (request, id):
     return redirect('borrow:show_main') 
 
 def create_product(request):
-    form = ProductForm(request.POST or None)
-    if form.is_valid() and request.method == "POST":
-        form.save()
+    if request.method == "POST":
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            title = form.cleaned_data.get("title")
+            author = form.cleaned_data.get("author")
+            new_product = Request(title=title, author=author)
+            new_product.save()
+          
+            return redirect('main:show_main')
+    else:
+        form = ProductForm()
+
         return HttpResponseRedirect(reverse('main:show_main'))
 
 

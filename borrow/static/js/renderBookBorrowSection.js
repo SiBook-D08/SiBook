@@ -126,6 +126,15 @@ function addToList() {
     alert("Berhasil Meminjam Buku")
     
 }
+function addProduct() {
+    fetch("create_product/", {
+        method: "POST",
+        body: new FormData(document.querySelector('#form'))
+    }).then(refreshProducts)
 
+    document.getElementById("form").reset()
+    return false
+}
+document.getElementById("add").onclick = addProduct
 refreshEveryProduct()
 refreshCart()
