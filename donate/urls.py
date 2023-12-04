@@ -6,4 +6,5 @@ app_name = 'donate'
 urlpatterns = [
     path('', donate_view, name='donate_view'),
     path('add-book-ajax/', add_book_ajax, name='add_book_ajax'),
+    path('create-flutter/', create_product_flutter, name='create_product_flutter'),
 ]

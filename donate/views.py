@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 
 @login_required(login_url='/login')
 def donate_view(request: HttpRequest):
@@ -40,3 +41,27 @@ def add_book_ajax(request: HttpRequest):
         form.save()
 
         return HttpResponse(json.dumps(obj))
+
+
+'''buat flutter'''
+@csrf_exempt
+def create_product_flutter(request):
+    if request.method == 'POST':
+
+        data = json.loads(request.body)
+
+        new_product = Book.objects.create(
+            user = request.user,
+            title = data["title"],
+            author = (data["author"]),
+            description = data["description"],
+            num_pages = int(data["num_pages"]),
+            img_url = "https://books.google.com/books/content?id=SXGCEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+            avaliable = True,
+        )
+
+        new_product.save()
+
+        return JsonResponse({"status": "success"}, status=200)
+    else:
+        return JsonResponse({"status": "error"}, status=401)

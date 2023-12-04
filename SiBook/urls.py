@@ -26,5 +26,5 @@ urlpatterns = [
     path('donate/', include('donate.urls')),
     path('returnBook/',include('review_return.urls')),
     path('favorite/', include('favorite.urls')),
-
+    path('auth/', include('authentication.urls')),
 ]

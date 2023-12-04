@@ -9,5 +9,5 @@ urlpatterns = [
     path('get-books/', get_books, name='get_books'),
     path('edit-book/', edit_book, name='edit_book'),
     path('get-user-by-id/<int:id>/', get_user_by_id, name='get_user_by_id'),
-    path('get-current-user/', get_current_user, name='get_current_user')
+    path('get-current-user/', get_current_user, name='get_current_user'),
 ]
