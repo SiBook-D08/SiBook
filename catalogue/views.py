@@ -63,8 +63,8 @@ def edit_book(request):
         bookById.description = description
         bookById.last_edited_user = request.user
         bookById.save()
-        return HttpResponse("Book Edited", status=200)
-    return HttpResponse('Form is not valid', status=402)
+        return JsonResponse({"status": "success"}, status=200)
+    return JsonResponse({"status": "error"}, status=401)
 
 def get_user_by_id(request, id):
     users = User.objects.filter(pk=id)

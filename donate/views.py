@@ -51,11 +51,10 @@ def create_product_flutter(request):
         data = json.loads(request.body)
 
         new_product = Book.objects.create(
-            user = request.user,
             title = data["title"],
             author = (data["author"]),
             description = data["description"],
-            num_pages = int(data["num_pages"]),
+            num_pages = int(data["numPages"]),
             img_url = "https://books.google.com/books/content?id=SXGCEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
             avaliable = True,
         )
