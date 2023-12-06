@@ -45,23 +45,37 @@ def add_book_ajax(request: HttpRequest):
 
 '''buat flutter'''
 @csrf_exempt
-def create_product_flutter(request):
+def create_product_flutter(request: HttpRequest):
     if request.method == 'POST':
+        obj = {'status': 'unauthorized'}
+        if not request.user.is_authenticated:
+            return JsonResponse(obj, status=401)
+        
+        form = BookForm(json.loads(request.body) or None)
 
-        data = json.loads(request.body)
+        obj['status'] = 'badRequest'
+        if not form.is_valid():
+            return JsonResponse(obj, status=400)
+        
+        obj['status'] = 'full'
+        if Book.objects.all().count() >= 115:
+            return JsonResponse(obj, status=403)
+        
+        obj['status'] = 'alrExists'
+        book = None
+        try:
+            book = Book.objects.get(title=request.POST['title'])
+        except:
+            pass
+        if book:
+            return JsonResponse(obj, status=403)
+        
+        obj['status'] = 'success'
 
-        new_product = Book.objects.create(
-            user = request.user,
-            title = data["title"],
-            author = (data["author"]),
-            description = data["description"],
-            num_pages = int(data["num_pages"]),
-            img_url = "https://books.google.com/books/content?id=SXGCEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-            avaliable = True,
-        )
-
-        new_product.save()
-
+        form = form.save(commit=False)
+        form.last_edited_user = request.user
+        form.save()
+        
         return JsonResponse({"status": "success"}, status=200)
     else:
-        return JsonResponse({"status": "error"}, status=401)
+        return JsonResponse({"status": "error"}, status=405)
