@@ -8,6 +8,10 @@ from django.core import serializers
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+
 
 @login_required(login_url='/login')
 def show_main(request):
@@ -32,9 +36,26 @@ def add_to_cart(request, book_id):
             loan.save()
 
     return redirect('borrow:show_main')
-    
+
+@csrf_exempt
+def add_to_cart_flutter(request, book_id):
+    # data = json.loads(request.body.decode('utf-8'))
+    # uname = data.get('username', None)
+    # print(request.body)
+    username = request.POST.get('username', None)
+    user_now = User.objects.get(username=username)
+    if request.method == "POST" :
+        book = Book.objects.get(pk=book_id)
+        print("MASUKKK")
+        if not (Cart.objects.filter(user=user_now, book=book).exists()):
+            loan = Cart(user=user_now, book=book)
+            loan.save()
+            print("MASUK JUGA")
+    return JsonResponse({"status": "success"}, status=200)
+
 @csrf_exempt
 def add_to_list(request):
+    
     if request.method == "POST" :
         cart = Cart.objects.filter(user = request.user, book__avaliable= True)
         for item in cart:
@@ -43,8 +64,53 @@ def add_to_list(request):
             item.book.save()
             loan.save()
         Cart.objects.filter(user = request.user).delete()
-    return redirect('borrow:show_main')    
+    return redirect('borrow:show_main') 
+@csrf_exempt  
+def add_to_list_flutter(request):
+    username = request.POST.get('username', None)
+    user_now = User.objects.get(username=username)
+    if request.method == "POST" :
+        cart = Cart.objects.filter(user = user_now, book__avaliable= True)
+        for item in cart:
+            loan = Loan(user=user_now, book=item.book)
+            item.book.avaliable= False
+            item.book.save()
+            loan.save()
+        Cart.objects.filter(user = user_now).delete()
+        return JsonResponse({"status": "success"}, status=200)
+    else:
+        return JsonResponse({"status": "error"}, status=401)
+@csrf_exempt
+def create_cart_flutter(request):
+    if request.method == 'POST':
+        
+        data = json.loads(request.body)
 
+        new_product = Cart.objects.create(
+            user = request.user,
+            book=["book"],
+        )
+
+        new_product.save()
+
+    return JsonResponse({"status": "success"}, status=200)
+    
+    
+@csrf_exempt
+def create_list_flutter(request):
+    if request.method == 'POST':
+        
+        data = json.loads(request.body)
+
+        new_product = Cart.objects.create(
+            user = request.user,
+            book=["book"],
+        )
+
+        new_product.save()
+
+    return JsonResponse({"status": "success"}, status=200)
+    
 def batal_pinjem(request, id):
     print(Loan.objects.all())
     book = Book.objects.get(pk=id)
@@ -63,6 +129,7 @@ def get_book_data(request, id):
     book = Book.objects.filter(pk=id)
     return HttpResponse(serializers.serialize('json', book))
 
+
 def get_user_data(request, id):
     user = User.objects.filter(pk=id)
     return HttpResponse(serializers.serialize('json', user))
@@ -76,9 +143,15 @@ def get_cart(request):
     
 @csrf_exempt    
 def remove_from_cart (request, id):
-    if request.method == "POST" :
+    if request.method == "POST": 
         Cart.objects.filter(pk = id).delete()
     return redirect('borrow:show_main') 
+@csrf_exempt 
+def remove_from_cart_flutter (request, id):
+    if request.method == "POST" :
+        Cart.objects.get(book=Book.objects.get(pk=id)).delete()
+
+    return JsonResponse({"status": "success"}, status=200)
 
 def create_product(request):
     if request.method == "POST":
