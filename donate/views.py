@@ -51,7 +51,8 @@ def create_product_flutter(request: HttpRequest):
         if not request.user.is_authenticated:
             return JsonResponse(obj, status=401)
         
-        form = BookForm(json.loads(request.body) or None)
+        data = json.loads(request.body)
+        form = BookForm(data or None)
 
         obj['status'] = 'badRequest'
         if not form.is_valid():
@@ -64,7 +65,7 @@ def create_product_flutter(request: HttpRequest):
         obj['status'] = 'alrExists'
         book = None
         try:
-            book = Book.objects.get(title=request.POST['title'])
+            book = Book.objects.get(title=data['title'])
         except:
             pass
         if book:
