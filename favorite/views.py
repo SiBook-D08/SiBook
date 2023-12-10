@@ -1,6 +1,7 @@
+import json
 from django.shortcuts import redirect, render
 from favorite.models import *
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
@@ -60,3 +61,19 @@ def remove_from_favorited(request, id):
         favorited_book.delete()
         
     return redirect('favorite:show_main')
+
+@csrf_exempt
+def add_to_favorited_flutter(request, id):
+    if request.method == "POST" :
+        data = json.loads(request.body)
+        book = Book.objects.get(pk=id)
+        if not (FavoritedBooks.objects.filter(user=request.user, book=book).exists()):
+            new_favorited_book = FavoritedBooks.objects.create(
+                user = request.user,
+                book = book,
+                alasan = data["alasan"],
+            )
+            new_favorited_book.save()
+            book.favorited = True
+            book.save()
+    return JsonResponse({"status": "success"}, status=200)
