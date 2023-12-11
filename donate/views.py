@@ -54,16 +54,24 @@ def create_product_flutter(request: HttpRequest):
         data = json.loads(request.body)
         form = BookForm(data or None)
 
-        new_product = Book.objects.create(
-            title = data["title"],
-            author = (data["author"]),
-            description = data["description"],
-            num_pages = int(data["numPages"]),
-            img_url = "https://books.google.com/books/content?id=SXGCEAAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-            avaliable = True,
-        )
-
-        new_product.save()
+        obj['status'] = 'badRequest'
+        if not form.is_valid():
+            return JsonResponse(obj, status=400)
+        
+        obj['status'] = 'full'
+        if Book.objects.all().count() >= 115:
+            return JsonResponse(obj, status=403)
+        
+        obj['status'] = 'alrExists'
+        book = None
+        try:
+            book = Book.objects.get(title=data['title'])
+        except:
+            pass
+        if book:
+            return JsonResponse(obj, status=403)
+        
+        obj['status'] = 'success'
 
         form = form.save(commit=False)
         form.last_edited_user = request.user
