@@ -45,10 +45,14 @@ def add_book_ajax(request: HttpRequest):
 
 '''buat flutter'''
 @csrf_exempt
-def create_product_flutter(request):
+def create_product_flutter(request: HttpRequest):
     if request.method == 'POST':
-
+        obj = {'status': 'unauthorized'}
+        if not request.user.is_authenticated:
+            return JsonResponse(obj, status=401)
+        
         data = json.loads(request.body)
+        form = BookForm(data or None)
 
         new_product = Book.objects.create(
             title = data["title"],
@@ -61,6 +65,10 @@ def create_product_flutter(request):
 
         new_product.save()
 
+        form = form.save(commit=False)
+        form.last_edited_user = request.user
+        form.save()
+        
         return JsonResponse({"status": "success"}, status=200)
     else:
-        return JsonResponse({"status": "error"}, status=401)
+        return JsonResponse({"status": "error"}, status=405)

@@ -10,5 +10,6 @@ urlpatterns = [
     path('get-user-data/<int:id>/', get_user_data, name="get_user_data"),
     path('add-to-favorited/<int:id>/', add_to_favorited, name="add_to_favorited"),
     path('get-favorited-books/', get_favorited_books, name="get_favorited_books" ),
-    path('remove-from-favorited/<int:id>/', remove_from_favorited, name="remove_from_favorited")
+    path('remove-from-favorited/<int:id>/', remove_from_favorited, name="remove_from_favorited"),
+    path('add-to-favorited-flutter/<int:id>/', add_to_favorited_flutter, name="add_to_favorited_flutter"),
 ]
