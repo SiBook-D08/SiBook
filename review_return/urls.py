@@ -16,6 +16,7 @@ urlpatterns = [
     path('user-reviews/get-reviews/',get_reviews, name='get_reviews'),
     path('user-reviews/get-book-data/<int:id>/', get_book_data, name="get_book_data"),
     path('user-reviews/get-user-data/<int:id>/', get_user_data, name="get_user_data"),
-    path('user-reviews/get-reviews-experimental/',get_reviews_experimental, name="get_reviews_experimental")
+    path('user-reviews/get-reviews-experimental/',get_reviews_experimental, name="get_reviews_experimental"),
+    path('create-review-flutter/<int:id>/', create_review_flutter, name='create_product_flutter'),
     
 ]

@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import redirect, render
 from borrow.models import *
 from review_return.models import *
@@ -82,3 +83,22 @@ def get_reviews(request):
 def get_reviews_experimental(request):
     reviews = GiveBack.objects.select_related('book').all()
     return HttpResponse(serializers.serialize('json', reviews))
+
+@csrf_exempt
+def create_review_flutter(request,id):
+    if request.method == 'POST':
+        book=Book.objects.get(pk=id)
+        data = json.loads(request.body)
+
+        new_product = GiveBack.objects.create(
+            user = request.user,
+            book = book,
+            review = data["review"]
+        )
+
+        new_product.save()
+        just_return(request,id)
+
+        return JsonResponse({"status": "success"}, status=200)
+    else:
+        return JsonResponse({"status": "error"}, status=401)
