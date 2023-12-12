@@ -1,7 +1,7 @@
 from catalogue.models import Book
 from donate.forms import BookForm
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.contrib.auth.decorators import login_required
@@ -36,6 +36,7 @@ def add_book_ajax(request: HttpRequest):
             return HttpResponse(json.dumps(obj))
 
         obj['status'] = 'valid'
+
         form = form.save(commit=False)
         form.last_edited_user = request.user
         form.save()
