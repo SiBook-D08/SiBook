@@ -79,17 +79,15 @@ def add_to_favorited_flutter(request, id):
     return JsonResponse({"status": "success"}, status=200)
 
 @csrf_exempt
-def remove_from_favorited_flutter(request):
+def remove_from_favorited_flutter(request, id):
     if request.method == "POST":
-        data = json.loads(request.body)
-        bookId = data["bookId"]
-        favorited_book = FavoritedBooks.objects.get(pk=bookId)
+        favorited_book = FavoritedBooks.objects.get(pk=id)
         book = favorited_book.book
         book.favorited = False
         book.save()
         favorited_book.delete()
     return JsonResponse({"status": "success"}, status=200)
-
+    
 def get_favorited_flutter(request):
     favoritedBook = FavoritedBooks.objects.select_related('book').all()
     return HttpResponse(serializers.serialize('json', favoritedBook))
