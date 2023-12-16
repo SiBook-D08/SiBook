@@ -77,3 +77,14 @@ def add_to_favorited_flutter(request, id):
             book.favorited = True
             book.save()
     return JsonResponse({"status": "success"}, status=200)
+
+@csrf_exempt
+def remove_from_favorited_flutter(request, id):
+    if request.method == "POST":
+        favorited_book = FavoritedBooks.objects.get(pk=id)
+        book = favorited_book.book
+        book.favorited = False
+        book.save()
+        favorited_book.delete()
+        
+    return JsonResponse({"status": "success"}, status=200)
