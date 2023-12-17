@@ -1,0 +1,61 @@
+<!--  Load static files -->
+{% load static %}
+
+<!-- Navigation -->
+<div class="navbar">
+    <div class="navbar-brand">
+        <a href="/" class="navbar-item">SiBook</a>
+    </div>
+    <div class="navbar-menu">
+        <div class="navbar-end">
+            <a href="/catalogue/" class="navbar-item">Katalog</a>
+            <a href="/borrow/" class="navbar-item">Pinjam</a>
+            <a href="/donate/" class="navbar-item">Donasi</a>
+            <a href="/returnBook/" class="navbar-item">Balikan</a>
+            <a href="/returnBook/user-reviews/" class="navbar-item">Ulasan</a>
+            <a href="/favorite/" class="navbar-item">Favorit</a>
+
+            {% if user.is_authenticated %}
+                <a href="/logout/" class="navbar-item" id="navbar-username">Logout</a>
+            {% else %}
+                <a href="/login/" class="navbar-item">Login</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+<style>
+/* Customize the navbar styling */
+.navbar {
+    background-color: #7D9D9C; /* Green background color */
+    color: #E4DCCF; /* White text color */
+    padding: 0; /* Remove padding */
+    height: 5.5vh; /* Set the height to 10% of the viewport height */
+    width: 100vw;
+    display: flex;
+    align-items: center; /* Center items vertically */
+    position: fixed;
+    z-index: 1;
+}
+
+.navbar-brand {
+    margin-right: 2em; /* Adjust the margin for brand */
+}
+
+.navbar-item {
+    color: #E4DCCF; /* White text color for navbar items */
+    padding: 0.5em 1em; /* Add some padding to the items */
+    margin: 0 0.5em; /* Add some margin between items */
+    text-decoration: none; /* Remove default text decoration */
+    font-size: 1.2em; /* Adjust font size */
+}
+
+.navbar-item:hover {
+    background-color: #576F72; /* Darker green color on hover */
+}
+
+
+
+
+</style>

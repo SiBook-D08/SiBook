@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Header -->
+<header id="header" class="header">
+    <!-- Picture taken from https://unsplash.com/photos/7FOSJVtUtac -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="text-container">
+                    <h1 class="h1-large">SiBook: Your Gateway to Borrowed Adventures</h1>
+                    <a class="btn-solid-lg page-scroll" href="#about">Discover</a>
+                </div> <!-- end of text-container -->
+            </div> <!-- end of col -->
+        </div> <!-- end of row -->
+    </div> <!-- end of container -->
+</header> <!-- end of header -->
+<!-- end of header -->
+
+<style>
+
+
+.header {
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+    url("static/images/home-bg.jpeg") center center no-repeat;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    text-align: center;
+    height: 100vh;
+    position: relative; /* Set position to relative for absolute positioning */
+}
+
+.header .text-container {
+    position: absolute;
+    top: 50%; /* Position the container 50% from the top */
+    left: 50%; /* Position the container 50% from the left */
+    transform: translate(-50%, -50%); /* Center the container */
+}
+
+.header .h1-large {
+    margin-bottom: 1.75rem;
+    color: #ffffff;
+}
+
+
+.header .h1-large {
+  margin-bottom: 1.75rem;
+  color: #ffffff;
+}
+
+.header .btn-solid-lg:hover {
+  border: 1px solid #ffffff;
+  color: #ffffff;
+}
+
+.header .btn-outline-lg {
+  padding: 1.625rem 1.625rem 1.625rem 1.625rem;
+  border: none;
+  color: #ffffff;
+}
+
+.header .btn-outline-lg:hover {
+  background: transparent;
+  color: #9c9ead;
+  text-decoration: none;
+}
+
+.header .btn-outline-lg .fas {
+  margin-right: 0.375rem;
+}
+
+.btn-solid-lg {
+  display: inline-block;
+  padding: 1.625rem 2.625rem 1.625rem 2.625rem;
+  border: 1px solid #0b36a8;
+  background-color: #0b36a8;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 0;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.btn-solid-lg:hover {
+  background-color: transparent;
+  color: #0b36a8; /* needs to stay here because of the color property of a tag */
+  text-decoration: none;
+}
+
+</style>
+{% endblock content %}

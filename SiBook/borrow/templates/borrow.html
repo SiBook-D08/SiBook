@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Header -->
+<header id="header" class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="text-container">
+                    {% if user.is_authenticated %} <h1 class="h1-large">Halo {{ name }}</h1> {% endif %}
+                    <h1 class="h1-large">Mau pinjam buku apa hari ini?</h1>
+                    <a class="btn-solid-lg page-scroll" href="#about">Discover</a>
+                </div> 
+            </div> 
+        </div> 
+    </div> 
+</header> 
+<!-- background-color: #003300;
+background-color: #F0EBE3 -->
+</br>
+<div class="container" style="border: 1px solid black; background-color: #F0EBE3; padding-bottom: 0.5%; max-width: 60%;border-radius: 10px; padding-top: 10px;">
+    <div style="padding-left: 10%; padding-right: 10%; padding-top: 5px;">
+        <h1 style="text-align: center; background-color: #003300; padding-top: 10%; padding: 5px; color: white; border-radius: 10px;"> Ini isi Keranjang Kamu</h1>
+    </div>
+    <table id ="cart" style="margin: auto; width: 50%;"></table>
+</div>
+<br>
+
+</br>
+<div class="row pembatas" id="product_cards"></div>
+</br>
+<div class="row pembatas" id="product_cards_borrowed"></div>
+<div class="container" style="border: 1px solid black; background-color: #F0EBE3; padding-bottom: 0.5%; max-width: 60%;border-radius: 10px; padding-top: 10px;">
+    <div class="d-flex justify-content-center align-items-center">
+        <h3  style="text-align: center; background-color: #003300; padding-top: 10%; padding: 5px; color: white; border-radius: 10px;">Buku yang kamu cari ga ada?</h3> 
+    </div>
+    <div class="d-flex justify-content-center align-items-center">
+        <h3  style="text-align: center; background-color: #003300; padding-top: 10%; padding: 5px; color: white; border-radius: 10px;"> Request di sini</h3>
+    </div>
+    
+    <div class="d-flex justify-content-center align-items-center" style="padding-bottom: 10px;">
+        <form class="register" id="form" method="post">
+            {% csrf_token %} <!-- Include the CSRF token -->
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="title">Title</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" name="title" id="title"  required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="author">Author</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" name="author" id="author"  required>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="col-md-6 ">
+                <button type="submit" class=" text-left">Submit</button>
+            </div>
+         
+        </form>
+    </div>
+</div>
+<br>
+
+<div class="search-container">
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="container">
+            
+        </div>
+    </div>
+</div>
+</div>
+<link rel="stylesheet" href="{% static 'css/borrow.css' %}" />
+<script cache="reload" rel="preload" src="{% static 'js/renderBookBorrowSection.js' %}"></script>
+<script src="{% static 'js/searchBar.js' %}"></script>
+
+{% endblock content %}

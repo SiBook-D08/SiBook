@@ -1,0 +1,189 @@
+
+    .search-container{
+        display: flex;
+        justify-content: center;
+    }
+    
+    .pembatas{
+        margin: 3vh 0.3vw 0 0.3vw;
+    }
+    .text-search{
+    background-color:#F0EBE3 ;
+    padding: 5px;
+    border-radius: 5px;
+    }
+    .button-search{
+        background-color:#003300 ;
+        padding: 5px;
+        border-radius: 5px;
+        color: white;
+        
+    }
+    body{
+        background-color:#62847a;
+    }
+    
+    .card-body{
+        background-color: #F0EBE3;
+    }
+    .card-body-borrowed {
+        padding: 10px;
+        background-color: #e6e6e6;
+        display: flex;
+        flex-direction: column;
+        
+    }
+    .card-header-borrowed{
+        background-color: #a6a6a6;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+    }
+    .card-footer{
+        background-color: #003300;
+    }
+    .card-footer-borrowed{
+        background-color: #e6e6e6;
+    }
+    .text-muted{
+        color: rgba(0, 0, 0, .5);
+    }
+    
+    .card-header{
+        background-color: #003300;
+        color: white;
+    }
+    
+    .header {
+        background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+                    url("/static/images/home-bg.jpeg") center center no-repeat;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        text-align: center;
+        height: 100vh;
+        position: relative; /* Set position to relative for absolute positioning */
+    
+    }
+    
+    .header .text-container {
+        position: absolute;
+        top: 50%; /* Position the container 50% from the top */
+        left: 50%; /* Position the container 50% from the left */
+        transform: translate(-50%, -50%); /* Center the container */
+    }
+    
+    .header .h1-large {
+        margin-bottom: 1.75rem;
+        color: #ffffff;
+    }
+    
+    
+    .header .h1-large {
+        margin-bottom: 1.75rem;
+        color: #ffffff;
+    }
+    
+    .header .btn-solid-lg:hover {
+        border: 1px solid #ffffff;
+        color: #ffffff;
+    }
+    
+    .header .btn-outline-lg {
+        padding: 1.625rem 1.625rem 1.625rem 1.625rem;
+        border: none;
+        color: #ffffff;
+    }
+    
+    .header .btn-outline-lg:hover {
+        background: transparent;
+        color: #9c9ead;
+        text-decoration: none;
+    }
+    
+    .header .btn-outline-lg .fas {
+        margin-right: 0.375rem;
+    }
+    
+    .btn-solid-lg {
+        display: inline-block;
+        padding: 1.625rem 2.625rem 1.625rem 2.625rem;
+        border: 1px solid #0b36a8;
+        background-color: #0b36a8;
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 0.875rem;
+        line-height: 0;
+        text-decoration: none;
+        transition: all 0.2s;
+    }
+    
+    .btn-solid-lg:hover {
+        background-color: transparent;
+        color: #0b36a8; /* needs to stay here because of the color property of a tag */
+        text-decoration: none;
+    }
+
+    .review-modal {
+        padding: 1em;
+        max-width: 50ch;
+        border-color: #003300;
+        border-width: 4px;
+        background-color: #e4dcd1;
+    }
+    .review-modal::backdrop{
+        background: rgba(0, 0, 0, 0.6);
+    }
+    .review_card {
+        display: flex;
+        flex-direction: column;
+        max-width: 89%;
+        border-radius: 10px;
+        margin: 10px;
+        border-width: 5px;
+        border-color: black;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .tabs {
+        display: flex;
+        background-color: #003300;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        color: #ffffff;
+    }
+
+    .left-tab {
+        flex: 0.8;
+        padding: 10px;
+        padding-left: 2%;
+        position: relative;
+        font-size: 120%;
+        ;
+    }
+
+    .right-tab {
+        flex: 0.2;
+        padding: 10px;
+    }
+    .tab-divider {
+        flex: 0;
+        width: 0;
+        border-right: 1px solid #ccc;
+    }
+
+
+    .tab-content {
+        padding: 10px;
+        padding-left: 2%;
+        background-color: #F0EBE3;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius:10px;
+    }
+
+
+    
+    
+    
+

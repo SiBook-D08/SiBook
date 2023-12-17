@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/donate.css' %}" />
+
+<div class="wallpaper">
+    <form method="post" id="donate-form">
+        {% csrf_token %}
+        <h1  style="text-align: center; background-color: #003300; padding-top: 10%; padding: 5px; color: white; border-radius: 10px; max-height: 15%;" class="donate-h1">Donate A Book</h1>
+        <div class="field-grid">
+            <label style="text-align: center; background-color: #003300; padding-top: 10%; padding: 5px; color: white; border-radius: 10px; max-width: 50%;" class="donate-h1" for="title">Title:</label>
+            <input type="text" id="title" name="title" />
+            <label style="text-align: center; background-color: #003300; padding-top: 10%; padding: 5px; color: white; border-radius: 10px; max-width: 50%;" for="author">Author:</label>
+            <input type="text" id="author" name="author" />
+            <label style="text-align: center; background-color: #003300; padding-top: 10%; padding: 5px; color: white; border-radius: 10px; max-width: 70%; max-height: 70%;" for="description">Description:</label>
+            <textarea id="description" name="description"></textarea>
+            <label style="text-align: center; background-color: #003300; padding-top: 10%; padding: 5px; color: white; border-radius: 10px; max-width: 70%;" for="num-pages">Page Count:</label>
+            <input type="number" id="num-pages" name="num_pages" />
+            <input type="hidden" name="avaliable" value="true">
+        </div>
+        <div class="flex-container">
+            <div></div>
+            <div>
+                <button type="submit"  onclick="donateAjaxPost(event)">Donate Book</button>
+                <p id="success-message" class="hidden">Form submitted!</p>
+                <h1 id="error-message" class="hidden">ATTN: Invalid input!</h1>
+                <p id="full-message" class="hidden">Sorry, our book catalogue is already full.</p>
+                <p id="alr-exists-message" class="hidden">Book already exists in the catalogue!</p>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock content %}
+
+{% block script %}
+<script src="{% static 'js/donate.js' %}"></script>
+{% endblock script %}
