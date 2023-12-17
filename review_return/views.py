@@ -44,12 +44,6 @@ def just_return(request, id):
 
 @csrf_exempt
 def review_and_return_books(request):
-    bad_desc_list = ['bagus', 'keren banget', 'serem bukunyaa', 'jir ', 'naomi']
-    for desc in bad_desc_list:
-        if len(GiveBack.objects.filter(review__contains=desc)) == 0 :
-            continue
-        bad_review = GiveBack.objects.filter(review__contains=desc)
-        bad_review.delete()
     if request.method == 'POST':
         user_id = request.POST.get("user")
         book_id = request.POST.get("book")
