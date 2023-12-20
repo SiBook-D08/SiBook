@@ -89,5 +89,6 @@ def remove_from_favorited_flutter(request, id):
     return JsonResponse({"status": "success"}, status=200)
     
 def get_favorited_flutter(request):
+    # filter based on user
     favoritedBook = FavoritedBooks.objects.select_related('book').filter(user = request.user)
     return HttpResponse(serializers.serialize('json', favoritedBook))
