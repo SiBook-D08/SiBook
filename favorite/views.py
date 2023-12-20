@@ -48,7 +48,7 @@ def add_to_favorited(request, id):
     return redirect('favorite:show_main')    
 
 def get_favorited_books(request):
-    favorited_books = FavoritedBooks.objects.all()
+    favorited_books = FavoritedBooks.objects.filter(user = request.user)
     return HttpResponse(serializers.serialize('json', favorited_books))
 
 @csrf_exempt
@@ -89,5 +89,5 @@ def remove_from_favorited_flutter(request, id):
     return JsonResponse({"status": "success"}, status=200)
     
 def get_favorited_flutter(request):
-    favoritedBook = FavoritedBooks.objects.select_related('book').all()
+    favoritedBook = FavoritedBooks.objects.select_related('book').filter(user = request.user)
     return HttpResponse(serializers.serialize('json', favoritedBook))
